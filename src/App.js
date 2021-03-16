@@ -1,6 +1,7 @@
 import React from 'react';
-import "./assets/Style.scss"
+import "./assets/scss/style.scss"
 import MainRoute from "./Routes/MainRoute"
+
 
 function App() {
   return (

@@ -9,6 +9,7 @@ function AuthReducer(state = initialState, action) {
         ...state,
         token: action.value.token,
       };
+      
     case "LOGOUT":
       return {
         token: null,
