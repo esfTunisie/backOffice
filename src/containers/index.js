@@ -7,12 +7,12 @@ import TheHeaderDropdownNotif from './TheHeaderDropdownNotif'
 import TheHeaderDropdownTasks from './TheHeaderDropdownTasks'
 import TheLayout from './TheLayout'
 import TheSidebar from './TheSidebar'
-
+import TabComponent from '../Components/TabComponent'
 export {
 
   TheFooter,
   TheHeader,
- 
+ TabComponent,
   TheLayout,
   TheSidebar
 }

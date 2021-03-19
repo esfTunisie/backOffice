@@ -5,6 +5,8 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute"
 import TheHeader from "../containers/TheHeader"
 import TheSidebar from "../containers/TheSidebar"
 import TheFooter from "../containers/TheFooter"
+import TabComponent from '../Components/TabComponent'
+
 const MainRoute = () => {
   return (
     <Router>
@@ -13,7 +15,9 @@ const MainRoute = () => {
       <TheSidebar/>
       <div className="c-wrapper">
         <TheHeader/>
-        
+        <div className="c-body">
+          <TabComponent/>
+        </div>
         <TheFooter/>
       </div>
     </div>

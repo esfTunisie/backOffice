@@ -6,8 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux'
 import Store from './Redux/Store';
-import { persistor } from './Redux/Store'
-import { PersistGate } from "redux-persist/lib/integration/react";
+import { icons } from './assets/icons'
+React.icons = icons
 ReactDOM.render(
   <React.StrictMode>
  
