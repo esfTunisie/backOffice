@@ -3,6 +3,7 @@ import 'react-tabs/style/react-tabs.css';
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { apiURL } from '../Config/Config';
+import TableCommande from './TableCommande';
 
 class TabComponent extends React.Component
 {
@@ -17,10 +18,9 @@ class TabComponent extends React.Component
 
  getCurrentCommande() {
     console.log("test1");
-     fetch(apiURL+'/getCurrentCommande')
-    .then(response => response.json().then(console.log(response)));
-   
-    
+    fetch(apiURL+'/getCurrentCommande')
+    .then(response => response.json()).then(data => this.setState({ commandes:data }));
+    console.log(this.data)
     
 }
 
@@ -35,7 +35,7 @@ class TabComponent extends React.Component
         </TabList>
     
         <TabPanel>
-          <h2>Any content 1</h2>
+          <TableCommande/>
         </TabPanel>
         <TabPanel>
           <h2>Any content 2</h2>

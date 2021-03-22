@@ -8,6 +8,8 @@ import { Provider } from 'react-redux'
 import Store from './Redux/Store';
 import { persistor } from './Redux/Store'
 import { PersistGate } from "redux-persist/lib/integration/react";
+import 'antd/dist/antd.css';
+import './assets/icons/css/style.css'
 ReactDOM.render(
   <React.StrictMode>
     <PersistGate persistor={persistor}>
