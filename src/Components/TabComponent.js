@@ -9,16 +9,12 @@ class TabComponent extends Component
   constructor(props) {
     super(props);
     this.state = {
-      data_client: {}    };
+      data_client: {}};
   }
   getClient =()=>{
   
-   const data = fetch(apiURL+'getClients',{
-      mode: 'no-cors',
-      credentials: 'include',
-      method: 'GET',
-      headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}
-    }).then(response => response.json()).then(data => this.setState({ data:data }));
+   const data = fetch(apiURL+'getClients')
+    .then(response => response.json()).then(data => this.setState({ data:data }));
   }
   test= ()=>{
       this.getClient()
