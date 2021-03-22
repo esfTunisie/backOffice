@@ -4,6 +4,7 @@ import logger from "redux-logger-simple";
 import { persistStore, persistReducer } from "redux-persist";
 import storageLocal  from "redux-persist/lib/storage/session";
 import AuthReducer from "./Reducers/AuthReducer"
+import TemplateReducer from "./Reducers/TemplateResducer"
 
 
 const persistConfig = {
@@ -25,14 +26,12 @@ const enhancer = composeEnhancers(
 );
 const reducers = combineReducers({
   auth: AuthReducer,
-
+  temp: TemplateReducer
 });
 
 const persistedReducers = persistReducer(persistConfig, reducers);
 
-
-
 const Store = createStore(persistedReducers, enhancer);
-export default Store;
-export const persistor = persistStore(Store)
 
+export default Store;
+export const persistor = persistStore(Store);

@@ -4,40 +4,28 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { apiURL } from '../Config/Config';
 
-class TabComponent extends Component
+class TabComponent extends React.Component
 {
   constructor(props) {
     super(props);
     this.state = {
-      data_client: {}    };
+      commandes: {}    };
   }
-  getClient =()=>{
-  
-   const data = fetch(apiURL+'getClients',{
-      mode: 'no-cors',
-      credentials: 'include',
-      method: 'GET',
-      headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}
-    }).then(response => response.json()).then(data => this.setState({ data:data }));
-  }
-  test= ()=>{
-      this.getClient()
-     //const  item = this.setState({ data_client: data});
-     
-  
-      
+  componentDidMount() {
+    this.getCurrentCommande();
+}
+
+ getCurrentCommande() {
+    console.log("test1");
+     fetch(apiURL+'/getCurrentCommande')
+    .then(response => response.json().then(console.log(response)));
+   
     
-    let action ={
-      value: this.state.data_client,
-      type:'test',
-      
-    }
     
-    this.props.dispatch(action)
-  }
+}
 
     render(){
-        console.log(this.state.data);
+        console.log(this.state);
         return(
             <Tabs>
         <TabList>

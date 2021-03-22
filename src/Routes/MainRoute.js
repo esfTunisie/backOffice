@@ -1,12 +1,14 @@
 import React from "react";
-import {  BrowserRouter as Router, Switch } from "react-router-dom";
-
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import LandingPage from "../Pages/LandingPage/LandingPage"
 import PrivateRoute from "./PrivateRoute/PrivateRoute"
-import TheHeader from "../containers/TheHeader"
-import TheSidebar from "../containers/TheSidebar"
-import TheFooter from "../containers/TheFooter"
-import TabComponent from '../Components/TabComponent'
-
+import {
+ 
+  TheSidebar,
+  TheFooter,
+  TheHeader
+} from '../containers/index'
+import TapComponent from "../Components/TapComponent";
 const MainRoute = () => {
   return (
     <Router>
@@ -16,7 +18,7 @@ const MainRoute = () => {
       <div className="c-wrapper">
         <TheHeader/>
         <div className="c-body">
-          <TabComponent/>
+          <TapComponent />
         </div>
         <TheFooter/>
       </div>
