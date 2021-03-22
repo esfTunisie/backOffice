@@ -1,5 +1,6 @@
 const initialState = {
   token: null,
+  client: null
 };
 
 function AuthReducer(state = initialState, action) {
@@ -8,6 +9,11 @@ function AuthReducer(state = initialState, action) {
       return {
         ...state,
         token: action.value.token,
+      };
+      case "GET_CLIENT":
+      return {
+        ...state,
+        client: action.value,
       };
     case "LOGOUT":
       return {

@@ -4,6 +4,8 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { apiURL } from '../Config/Config';
 import TableCommande from './TableCommande';
+import { Route } from 'react-router';
+import { CSidebarNavItem } from '@coreui/react';
 
 class TabComponent extends React.Component
 {
@@ -12,33 +14,35 @@ class TabComponent extends React.Component
     this.state = {
       commandes: {}    };
   }
-  componentDidMount() {
-    this.getCurrentCommande();
-}
+  componentDidMount(){
+      this.getClients();
+  }
 
- getCurrentCommande() {
-    console.log("test1");
-    fetch(apiURL+'/getCurrentCommande')
-    .then(response => response.json()).then(data => this.setState({ commandes:data }));
-    console.log(this.data)
-    
+getClients= ()=>{
+    var client = [{id:"1",name:"farouk"}, {id:"2",name:"ahmed"},{id:"3",name:"mouna"}]
+   const action = {type:"GET_CLIENT", value:client}
+    this.props.dispatch(action)
 }
-
     render(){
-        console.log(this.state);
+        console.log(this.props.auth.client);
         return(
-            <Tabs>
+    <Tabs>
+    
         <TabList>
-          <Tab onClick={this.test}>Title 1</Tab>
-          
-          <Tab>Title 2</Tab>
+        {this.props.auth.client.map((el)=>(
+           <Tab> {el.name} </Tab>
+           )
+           )}
         </TabList>
     
         <TabPanel>
-          <TableCommande/>
+
+        <Route path="/nouveaux_clients/client1" component={CSidebarNavItem} >hello from nouveaux_clients client 1</Route>
+        <Route path="/commandes_annulées/client1"  component={CSidebarNavItem}>hello from commandes_annulées client 1</Route>
+        <Route path="/panier_abondonnées/client1" component={CSidebarNavItem} >hello from panier_abondonnées client 1</Route>
         </TabPanel>
         <TabPanel>
-          <h2>Any content 2</h2>
+          hello from client 2
         </TabPanel>
       </Tabs>
     )

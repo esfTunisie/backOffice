@@ -5,8 +5,7 @@ import {
   CSidebar,
   CSidebarBrand,
   CSidebarNav,
-  CSidebarNavDivider,
-  CSidebarNavTitle,
+
   CSidebarMinimizer,
   CSidebarNavDropdown,
   CSidebarNavItem,
@@ -43,10 +42,10 @@ const TheSidebar = () => {
         <CCreateElement
           items={navigation}
           components={{
-            CSidebarNavDivider,
+         
             CSidebarNavDropdown,
             CSidebarNavItem,
-            CSidebarNavTitle
+        
           }}
         />
       </CSidebarNav>

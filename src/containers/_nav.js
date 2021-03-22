@@ -10,9 +10,6 @@ import CIcon from '@coreui/icons-react'
 
   },
   
-
-
-  
   {
     _tag: 'CSidebarNavDropdown',
     name: 'Commande',
@@ -22,17 +19,17 @@ import CIcon from '@coreui/icons-react'
       {
         _tag: 'CSidebarNavItem',
         name: 'Nouveaux commandes',
-        to: '',
+        to: '/nouveaux_clients/client1',
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Commandes annulées',
-        to: '',
+        to: '/commandes_annulées/client1',
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Paniers abondannées',
-        to: '',
+        to: '/panier_abondonnées/client1',
       },
     
 ]
