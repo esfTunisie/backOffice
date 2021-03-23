@@ -16,9 +16,8 @@ class TabComponent extends React.Component
 }
 
  getCurrentCommande() {
-    console.log("test1");
-     fetch(apiURL+'/getCurrentCommande')
-    .then(response => response.json().then(console.log(response)));
+   fetch(apiURL+'/getCurrentCommande')
+  .then(response => response.json()).then(data => this.setState({ data:data }))
    
     
     
