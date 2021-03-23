@@ -1,20 +1,27 @@
 const initialState = {
   token: null,
-  client: null
+  client: null,
+  new_command:null,
+  current_command:null
 };
 
 function AuthReducer(state = initialState, action) {
   switch (action.type) {
-    case "SET_CURRENT_USER":
-      return {
-        ...state,
-        token: action.value.token,
-      };
       case "GET_CLIENT":
       return {
         ...state,
         client: action.value,
       };
+      case "GET_NEW_COMMAND":
+        return{
+          ...state,
+          new_command:action.value,
+        };
+        case "GET_CURRENT_COMMAND":
+          return{
+            ...state,
+            current_command:action.value,
+          };
     case "LOGOUT":
       return {
         token: null,

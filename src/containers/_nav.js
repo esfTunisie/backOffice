@@ -1,6 +1,7 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
 
+
   const _nav =  [
   {
     _tag: 'CSidebarNavItem',
@@ -14,22 +15,29 @@ import CIcon from '@coreui/icons-react'
     _tag: 'CSidebarNavDropdown',
     name: 'Commande',
     route: '/commande',
-    icon: 'cil-puzzle',
+    icon: <CIcon name="cilBasket" customClasses="c-sidebar-nav-icon"/>,
     _children: [
       {
         _tag: 'CSidebarNavItem',
         name: 'Nouveaux commandes',
-        to: '/nouveaux_clients/client1',
+        to: '/nouveaux_commande',
+       icon: <CIcon name="cilPencil"/>
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Commandes en cours',
+        to: '/commandes_en_cours',
+       
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Commandes annulées',
-        to: '/commandes_annulées/client1',
+        to: '/commandes_annulées',
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Paniers abondannées',
-        to: '/panier_abondonnées/client1',
+        to: '/panier_abondonnées',
       },
     
 ]

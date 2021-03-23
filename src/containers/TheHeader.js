@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, connect } from 'react-redux'
 import {
   CHeader,
   CToggler,
@@ -12,36 +12,48 @@ import {
   CLink
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs'
+import { Component } from 'react'
+import { apiURL } from '../Config/Config'
 
 // routes config
 
 
 
-const TheHeader = () => {
-  const dispatch = useDispatch()
-  const sidebarShow = useSelector(state => state.sidebarShow)
+class TheHeader extends Component {
 
-  const toggleSidebar = () => {
-    const val = [true, 'responsive'].includes(sidebarShow) ? false : 'responsive'
-    dispatch({type: 'set', sidebarShow: val})
+  constructor(props) {
+    super(props);
+    this.state = {
+      
+             };
   }
-
-  const toggleSidebarMobile = () => {
-    const val = [false, 'responsive'].includes(sidebarShow) ? true : 'responsive'
-    dispatch({type: 'set', sidebarShow: val})
+ handleClick (id){
+    fetch(apiURL+'/getNewCommande/'+id)
+    .then(response => response.json()).then(data => this.setState({ newCommand:data }));
+    const action = {type:"GET_NEW_COMMAND", value:this.state.newCommand}
+      this.props.dispatch(action)
+      this.handleClickCurrent(id);
   }
-
+  handleClickCurrent (id){
+    fetch(apiURL+'/getCurrentCommande/'+id)
+    .then(response=> response.json()).then(data=>this.setState({currentCommand:data}));
+    const action = {type:"GET_CURRENT_COMMAND", value:this.state.currentCommand}
+    this.props.dispatch(action)
+  }
+render(){
+  console.log(this.props.auth.client)
   return (
     <CHeader withSubheader>
       <CToggler
         inHeader
         className="ml-md-3 d-lg-none"
-        onClick={toggleSidebarMobile}
+       
       />
       <CToggler
         inHeader
         className="ml-3 d-md-down-none"
-        onClick={toggleSidebar}
+        
       />
       <CHeaderBrand className="mx-auto d-lg-none" to="/">
         <CIcon name="logo" height="48" alt="Logo"/>
@@ -59,31 +71,38 @@ const TheHeader = () => {
         </CHeaderNavItem>
       </CHeaderNav>
 
-
-
-      <CSubheader className="px-3 justify-content-between">
-        <CBreadcrumbRouter 
-          className="border-0 c-subheader-nav m-0 px-0 px-md-3" 
-          
-        />
-          <div className="d-md-down-none mfe-2 c-subheader-nav">
-            <CLink className="c-subheader-nav-link"href="#">
-              <CIcon name="cil-speech" alt="Settings" />
-            </CLink>
-            <CLink 
-              className="c-subheader-nav-link" 
-              aria-current="page" 
-              to="/dashboard"
-            >
-              <CIcon name="cil-graph" alt="Dashboard" />&nbsp;Dashboard
-            </CLink>
-            <CLink className="c-subheader-nav-link" href="#">
-              <CIcon name="cil-settings" alt="Settings" />&nbsp;Settings
-            </CLink>
-          </div>
-      </CSubheader>
+<CSubheader>
+      <Tabs>
+      
+      <TabList>
+      {this.props.auth.client.map((el)=>(
+       
+         <Tab onClick={()=>this.handleClick(el.id)}>{el.name}</Tab>
+         )
+      )}
+      </TabList>
+        <TabPanel>
+        </TabPanel>
+      
+    </Tabs>
+    </CSubheader>
     </CHeader>
   )
 }
 
-export default TheHeader
+}
+
+
+const mapStateToProps = (state, ownProps) => ({
+  auth: state.auth
+})
+
+
+const mapDispatchToProps = (dispatch) => {
+return {
+dispatch: (action) => {
+dispatch(action);
+},
+};
+};
+export default connect (mapStateToProps, mapDispatchToProps)(TheHeader)

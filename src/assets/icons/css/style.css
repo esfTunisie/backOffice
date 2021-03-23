@@ -1,3 +1,25 @@
 .ant-table-tbody{
     background-color: white !important;
 }
+.c-sidebar .c-sidebar-brand{
+    background-color: white;
+}
+.react-tabs__tab--selected{
+    border-color: #27558e !important;
+    background: #27558e !important ;
+}
+.react-tabs__tab-list {
+    border-bottom: 2px solid #27558e !important;
+}
+
+.react-tabs__tab{
+    padding: 6px 81px  !important;
+    font-size: medium;
+    margin-top: 7px;
+}
+.c-header{
+    border-bottom: 1px solid #ebedef !important;
+}
+.c-subheader{
+    background: #ebedef;
+}
