@@ -75,14 +75,13 @@ render(){
       <Tabs>
       
       <TabList>
-      {this.props.auth.client.map((el)=>(
+      {this.props.auth.client && this.props.auth.client.map((el)=>(
        
          <Tab onClick={()=>this.handleClick(el.id)}>{el.name}</Tab>
          )
       )}
       </TabList>
-        <TabPanel>
-        </TabPanel>
+        
       
     </Tabs>
     </CSubheader>

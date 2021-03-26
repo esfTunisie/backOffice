@@ -8,14 +8,15 @@ import {
   TheFooter,
   TheHeader
 } from '../containers/index'
-import TapComponent from "../Components/TabComponent";
-import { render } from '@testing-library/react';
+
 import { apiURL } from '../Config/Config';
 import { connect } from 'react-redux';
 import NewCommand from '../Components/NewCommand';
 import CommandAbondonnée from '../Components/CommandAbondonnée';
 import CommandAnnulée from '../Components/CommandAnnulée';
 import CurrentCommand from '../Components/CurrentCommand';
+import ApiPrestaForm from '../Components/ApiPrestaForm';
+import Formtest from '../Components/Formtest';
 
 class MainRoute extends Component{
 
@@ -55,10 +56,13 @@ console.log(DataJson);
           </Route>
           <div className="c-body">
            {/* <TapComponent />*/} 
+           <Route  path="/form_prestashop" component={ApiPrestaForm}/>
            <Route path="/nouveaux_commande" component={NewCommand}  /> 
            <Route path="/panier_abondonnées" component={CommandAbondonnée}  /> 
            <Route path="/commandes_annulées" component={CommandAnnulée}  /> 
            <Route path="/commandes_en_cours" component={CurrentCommand}  /> 
+           <Route path="/message" component={Formtest} />
+           
           </div>
           <Route>
           <TheFooter/>

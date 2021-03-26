@@ -10,12 +10,15 @@
 }
 .react-tabs__tab-list {
     border-bottom: 2px solid #27558e !important;
+    display: flex;
 }
 
 .react-tabs__tab{
     padding: 6px 81px  !important;
     font-size: medium;
     margin-top: 7px;
+    border-radius: 5px 5px 0 0;
+    list-style: none;
 }
 .c-header{
     border-bottom: 1px solid #ebedef !important;
