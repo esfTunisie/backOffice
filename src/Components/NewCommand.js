@@ -98,7 +98,7 @@ class NewCommand extends React.Component {
   };
 
   render() {
-    console.log("hello",this.state.data);
+
     const columns = [
         {
           title: 'Nom',
