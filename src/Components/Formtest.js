@@ -29,25 +29,18 @@ class Formtest extends React.Component{
             })
             .catch(error => {
                 console.log(error);
-            });
-            
-            
-       
-        
+            });   
       }
 
       handleChange = (e)=>{
-          this.setState({value:e.target.value})
-      
-             
-        
+          this.setState({value:e.target.value})  
       }
 
     render(){
         console.log(this.state.value);
         return(
             <div>
-            <form  >
+            <form>
             <label>
               message :
               <input type="text" name="message" value={this.state.value} onChange={this.handleChange}  />

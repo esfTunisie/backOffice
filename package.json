@@ -2,6 +2,7 @@
   "name": "reactjs",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3006",
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@coreui/chartjs": "^2.0.0",
