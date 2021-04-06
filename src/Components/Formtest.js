@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react'
 
 class Formtest extends React.Component{
@@ -12,43 +13,53 @@ class Formtest extends React.Component{
         
       }
 
-      handleSubmit(){
-        const raw = JSON.stringify({"message":"amani "});
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-          };
-         
-  fetch("https://graph.facebook.com/105700664948995/feed?access_token=EAADtuD3xgEIBANRcLqNLPZCvEheVCkWZCiw2Q0HPwqR7ZCu0xDC4rQ16z0jJzVCW9eHSTdqrtL9bnBZClrdZBwdZAChfKqmm2tuIxzXLr7OTVdZBXlypsPgOT45OXEVEg5ttDWnA4oGhYKTaFq9ajQjJUZCUAU1Mz4FifFZAEfjDxFk9pwHUnfyTl9UzALCkHeE8ZD",
-  requestOptions).then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            });   
-      }
+
+
+      handleClick= ()=>{
+      
+      
+    axios
+    .post("https://graph.facebook.com/105700664948995/feed?", {
+     
+     message:this.state.value,
+     access_token:
+     "EAADtuD3xgEIBAGkmek1ISerJGi8DdMEQqH6amTFjqIoL2KFdAC6IfQKLg0Qyyz0QPcUQW9wRlbelZBSWqEMYi5RwbL9ASXUSYddHxvbf8ug457kcFh8fm7xm398ctz8YgXik5bW5S0xBMqFZA7ZBO2AnEWNlIqM3hu8CFt6YvhrhfeBszt4kmkG2sJVDKaqjHYKJZBWohgZDZD"
+   } )
+   .then(
+    res => {
+      const result = res.data;
+      console.log(result);
+      alert("Success!");
+    },
+    error => {
+      console.log(error);
+    }
+  );
+     
+    
+
+  }
 
       handleChange = (e)=>{
           this.setState({value:e.target.value})  
       }
 
     render(){
-        console.log(this.state.value);
+        
         return(
-            <div>
-            <form>
-            <label>
-              message :
-              <input type="text" name="message" value={this.state.value} onChange={this.handleChange}  />
-            </label>
-            <input type="submit" value="Envoyer" onClick={this.handleSubmit}  />
-          </form>
-            </div>
+          <div class="center">
+          <div class="container">
+              <textarea required id="text-area" name="message" value={this.state.value} onChange={this.handleChange} placeholder="facebook post..."></textarea>
+              
+                 <div>
+                 <button onClick={() => this.handleClick()}>Post</button>
+                 </div>
+             
+          </div>
+          </div>
         )
     }
 }
 export default Formtest
+
+

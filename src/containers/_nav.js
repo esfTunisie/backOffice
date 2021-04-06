@@ -22,7 +22,7 @@ import CIcon from '@coreui/icons-react'
         _tag: 'CSidebarNavItem',
         name: 'Nouveaux commandes',
         to: '/nouveaux_commande',
-       icon: <CIcon name="cilPencil"/>
+      
       },
       {
         _tag: 'CSidebarNavItem',
