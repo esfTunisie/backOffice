@@ -17,6 +17,7 @@ import CommandAnnulée from '../Components/CommandAnnulée';
 import CurrentCommand from '../Components/CurrentCommand';
 import ApiPrestaForm from '../Components/ApiPrestaForm';
 import Formtest from '../Components/Formtest';
+import CanceledCommand from '../Components/CanceledCommand';
 
 class MainRoute extends Component{
 
@@ -31,7 +32,12 @@ class MainRoute extends Component{
 }
 
 getClients= async ()=>{
-const Dada = await fetch(apiURL+'/getClients');
+const Dada = await fetch('/getClients',{
+  headers:{
+    'Access-Control-Allow-Origin': '*'
+  }
+  
+});
 const DataJson = await Dada.json();
 
   this.setState({client:DataJson});
@@ -59,7 +65,7 @@ console.log(DataJson);
            <Route  path="/form_prestashop" component={ApiPrestaForm}/>
            <Route path="/nouveaux_commande" component={NewCommand}  /> 
            <Route path="/panier_abondonnées" component={CommandAbondonnée}  /> 
-           <Route path="/commandes_annulées" component={CommandAnnulée}  /> 
+           <Route path="/commandes_annulées" component={CanceledCommand}  /> 
            <Route path="/commandes_en_cours" component={CurrentCommand}  /> 
            <Route path="/message" component={Formtest} />
            
