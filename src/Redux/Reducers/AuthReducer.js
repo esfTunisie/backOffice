@@ -2,7 +2,8 @@ const initialState = {
   token: null,
   client: null,
   new_command:null,
-  current_command:null
+  current_command:null,
+  canceled_command:null
 };
 
 function AuthReducer(state = initialState, action) {
@@ -22,6 +23,11 @@ function AuthReducer(state = initialState, action) {
             ...state,
             current_command:action.value,
           };
+          case "GET_CANCELED_COMMAND":
+            return{
+              ...state,
+              canceled_command:action.value,
+            };
     case "LOGOUT":
       return {
         token: null,
