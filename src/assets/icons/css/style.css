@@ -26,6 +26,25 @@
 .c-subheader{
     background: #ebedef;
 }
+.steps-content {
+    min-height: 200px;
+    margin-top: 16px;
+    
+    text-align: center;
+    border-radius: 2px;
+    margin-left: 20%;
+  }
+  
+  .steps-action {
+    margin-top: 24px;
+  }
+  [data-theme="dark"] .steps-content {
+    margin-top: 16px;
+    border: 1px dashed #303030;
+    background-color: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.65);
+    padding-top: 80px;
+  }
 
 
 #text-area {
