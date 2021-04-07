@@ -5,6 +5,7 @@ import "antd/dist/antd.css";
 import { Steps, Button, message } from "antd";
 import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
+import ThirdForm from "./ThirdForm";
 
 const { Step } = Steps;
 
@@ -18,8 +19,8 @@ const steps = [
     content: <SecondForm />
   },
   {
-    title: "Last",
-    content: "Last-content"
+    title: "Offre",
+    content: <ThirdForm />
   }
 ];
 const StepForms = ()=>{
@@ -43,7 +44,7 @@ const StepForms = ()=>{
         <div className="steps-action">
           {current < steps.length - 1 && (
             <Button type="primary" onClick={() => next()}>
-              Next
+              Suivant
             </Button>
           )}
           {current === steps.length - 1 && (
@@ -51,12 +52,12 @@ const StepForms = ()=>{
               type="primary"
               onClick={() => message.success("Processing complete!")}
             >
-              Done
+              Submit
             </Button>
           )}
           {current > 0 && (
             <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
-              Previous
+              précédent
             </Button>
           )}
         </div>
