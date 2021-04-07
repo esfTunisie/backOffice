@@ -56,3 +56,19 @@
     padding: 20px;
     border: 1px solid #c1c1c1;
 }
+
+.ant-form{
+    padding-right: 35%;
+    padding-top: 6%;
+}
+.steps-action{
+    margin-left: 50%;
+}
+.ant-form-pers{
+    padding-right: 0  !important;
+}
+
+.ant-steps{
+    width:65%;
+    margin-left: 20%;
+}

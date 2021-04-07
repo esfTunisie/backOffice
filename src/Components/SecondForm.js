@@ -2,14 +2,6 @@ import React, { useState } from 'react';
 import {
   Form,
   Input,
-  Button,
-  Radio,
-  Select,
-  Cascader,
-  DatePicker,
-  InputNumber,
-  TreeSelect,
-  Switch,
 } from 'antd';
 
 const SecondForm = () => {
@@ -34,59 +26,26 @@ const SecondForm = () => {
         }}
         onValuesChange={onFormLayoutChange}
         size={componentSize}
+        className="ant-form-pers"
       >
 
-        <Form.Item label="Input">
+        <Form.Item label="Raison sociale">
           <Input />
         </Form.Item>
-        <Form.Item label="Select">
-          <Select>
-            <Select.Option value="demo">Demo</Select.Option>
-          </Select>
+        <Form.Item label="Adresse">
+          <Input />
         </Form.Item>
-        <Form.Item label="TreeSelect">
-          <TreeSelect
-            treeData={[
-              {
-                title: 'Light',
-                value: 'light',
-                children: [
-                  {
-                    title: 'Bamboo',
-                    value: 'bamboo',
-                  },
-                ],
-              },
-            ]}
-          />
+        <Form.Item label="Catégorie des produits">
+          <Input />
         </Form.Item>
-        <Form.Item label="Cascader">
-          <Cascader
-            options={[
-              {
-                value: 'zhejiang',
-                label: 'Zhejiang',
-                children: [
-                  {
-                    value: 'hangzhou',
-                    label: 'Hangzhou',
-                  },
-                ],
-              },
-            ]}
-          />
+        <Form.Item label="lien de la page facebook">
+          <Input />
         </Form.Item>
-        <Form.Item label="DatePicker">
-          <DatePicker />
+        <Form.Item label="lien du compte instagram">
+          <Input />
         </Form.Item>
-        <Form.Item label="InputNumber">
-          <InputNumber />
-        </Form.Item>
-        <Form.Item label="Switch">
-          <Switch />
-        </Form.Item>
-        <Form.Item label="Button">
-          <Button>Button</Button>
+        <Form.Item label="lien du site web">
+          <Input />
         </Form.Item>
       </Form>
     </>
