@@ -1,4 +1,6 @@
 import { Form, Input, Button, Checkbox } from 'antd';
+import React from 'react'
+import isEmpty from 'validator/lib/isEmpty'
 const layout = {
   labelCol: {
     span: 8,
@@ -14,15 +16,44 @@ const tailLayout = {
   },
 };
 
-const FirstForm = () => {
-  const onFinish = (values) => {
-    console.log('Success:', values);
-  };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
 
+
+
+class  FirstForm extends React.Component {
+constructor(props){
+  super(props)
+  this.state={
+    name:"",
+    email:"",
+    password:"",
+    password2:"",
+    errorName:""
+  }
+}
+handlesubmit(){
+  console.log('success');
+    if(this.state.name ==''){
+      this.setState({"error name": this.state.errorName})
+    }
+  }
+  //  onFinish = (values) => {
+  //   console.log('Success:', values);
+  // };
+
+  //  onFinishFailed = (errorInfo) => {
+  //   console.log('Failed:', errorInfo);
+  // };
+ 
+  handleChange=(e)=>{
+    console.log(e);
+     this.setState({e:this.state.email})
+     this.setState({e:this.state.name})
+     this.setState({e:this.state.password})
+     this.setState({e:this.state.password2})
+
+   }
+render(){
   return (
     <Form
       {...layout}
@@ -30,8 +61,7 @@ const FirstForm = () => {
       initialValues={{
         remember: true,
       }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
+      
     >
       <Form.Item
         label="Nom et Prénom"
@@ -43,9 +73,9 @@ const FirstForm = () => {
           },
         ]}
       >
-        <Input />
+        <Input onChange={(e)=>this.handleChange(e.target.value)} />
       </Form.Item>
-
+      {this.state.errorName && this.state.errorName?<div>{this.state.errorName}</div>: null}
       <Form.Item
       label="Email"
       name="email"
@@ -56,9 +86,9 @@ const FirstForm = () => {
         },
       ]}
     >
-      <Input />
+      <Input onChange={(e)=>this.handleChange(e.target.value)} />
     </Form.Item>
-
+      
 
       <Form.Item
         label="mot de passe"
@@ -70,11 +100,11 @@ const FirstForm = () => {
           },
         ]}
       >
-        <Input.Password />
+        <Input.Password onChange={(e)=>this.handleChange(e.target.value)}/>
       </Form.Item>
       <Form.Item
       label="Confirmer mot de passe"
-      name="password two"
+      name="password2"
       rules={[
         {
           required: true,
@@ -82,12 +112,12 @@ const FirstForm = () => {
         },
       ]}
     >
-      <Input.Password />
+      <Input.Password onChange={(e)=>this.handleChange(e.target.value)}/>
     </Form.Item>
-
-
-
     </Form>
   );
+
+}
+
 };
 export default FirstForm

@@ -7,12 +7,30 @@ import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
 import ThirdForm from "./ThirdForm";
 
-const { Step } = Steps;
+
+class StepForms extends React.Component{
+    ////const [current, setCurrent] = React.useState(0);
+    constructor(props){
+      super(props);
+      this.state = {
+        current: 0
+        };
+    }
+
+     next = () => {
+      this.setState({current: this.state.current + 1 });
+    };
+  
+     prev = () => {
+      this.setState({current: this.state.current - 1 });
+    };
+    render(){
+  const { Step } = Steps;
 
 const steps = [
   {
     title: "Inscription",
-    content: <FirstForm />
+    content: <FirstForm handlesubmit={this.props.handlesubmit}  />
   },
   {
     title: "Données sur l'entreprise",
@@ -20,34 +38,24 @@ const steps = [
   },
   {
     title: "Offre",
-    content: <ThirdForm />
+    content: <ThirdForm  />
   }
 ];
-const StepForms = ()=>{
-    const [current, setCurrent] = React.useState(0);
-
-    const next = () => {
-      setCurrent(current + 1);
-    };
-  
-    const prev = () => {
-      setCurrent(current - 1);
-    };
-    return(
+      return(
         <>
-        <Steps  size="small" current={current}>
+        <Steps  size="small" current={this.state.current}>
           {steps.map((item) => (
             <Step key={item.title} title={item.title} />
           ))}
         </Steps>
-        <div className="steps-content">{steps[current].content}</div>
+        <div className="steps-content">{steps[this.state.current].content}</div>
         <div className="steps-action">
-          {current < steps.length - 1 && (
-            <Button type="primary" onClick={() => next()}>
+          {this.state.current < steps.length - 1 && (
+            <Button type="primary" onClick={() => this.next()}>
               Suivant
             </Button>
           )}
-          {current === steps.length - 1 && (
+          {this.state.current === steps.length - 1 && (
             <Button
               type="primary"
               onClick={() => message.success("Processing complete!")}
@@ -55,13 +63,15 @@ const StepForms = ()=>{
               Submit
             </Button>
           )}
-          {current > 0 && (
-            <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
+          {this.state.current > 0 && (
+            <Button style={{ margin: "0 8px" }} onClick={() => this.prev()}>
               précédent
             </Button>
           )}
         </div>
       </>
     )
+    }
+   
 }
 export default StepForms;

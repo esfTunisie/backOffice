@@ -31,9 +31,9 @@ class TheHeader extends Component {
   
  handleClick = async (id)=>{
 
-   await fetch('/api/getNewCommande/'+id ,{headers: {
-    'Access-Control-Allow-Origin': "http://localhost:8000",
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTc3MjU2NjEsImV4cCI6MTYxNzcyOTI2MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnJAaWR2ZXkuY29tIn0.HcxPz0gRBoMrT48gS2nk3NgfUFWvve6W959RDfIDql3Zod-hWAwASkWI3Prnrpu1Xxrxse8aBzrnyVHAFPoM2lPvNxHthhpmGvYyFTc6tFbwbUj9SICa8ZlRMJjyGRtZEaVd2Hq-mdknQaQ42tFcbDHRAC_xiIqHem9AaDLinbT2YOL4LI4b4851a90MChoFWXO7_VD-pZdhi4znL5HD3Ww8k14vioXoMbB-N13OsG_3SeXBLF_7XQ7uMzku2Rj--VcLLoKp_VMGmLOZVIrbSmzbM8OyLcZe8aw1mlZNGwsgqke5dljOymbuny50YqE5KzLnyqtbBMbFlTOdzoBf3Q'
+   await fetch(apiURL+'/api/getNewCommande/'+id ,{headers: {
+   
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTc4NzE5ODEsImV4cCI6MTYxNzg3NTU4MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnJAaWR2ZXkuY29tIn0.HJropZil6dv5Y3OWkY-e8etYFy8Qn6erjVmESmE-j5_Lh0lz6V4LNv3lJ_DL3EFCOUipiAYH-ma_E0Qvof6AM-ucMYR7_yS6LM9F5a0vQBjygZTF1N45OCGThEyqh_kB0gWrqYpC828DUUy-GmoM-b71Ml57lU0h_YttynOwXEuCo5HakzOQPFMCtSyo_oPLfwYJu5WP-Q4RU2M4fmGvzvf2aI-48lLkJZ_OWOMSQDCeu4SYCHjlz-am4ENlAZAlbg0bSTilTjsQUpePwX7h4hfXJWVuEbpQ8KKb23VuQ4DXdzw2oDRt7pzo8It0QabWPiPU8AQ6vIJ3EyTcJOTfHg'
   }})
     .then(response => response.json()).then(data => this.setState({ newCommand:data }));
     const action = {type:"GET_NEW_COMMAND", value:this.state.newCommand}
@@ -43,9 +43,9 @@ class TheHeader extends Component {
   }
   handleClickCurrent = async (id)=>{
     console.log('test',id);
-   await fetch('/api/getCurrentCommande/'+id ,{headers: {
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTc3MjU2NjEsImV4cCI6MTYxNzcyOTI2MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnJAaWR2ZXkuY29tIn0.HcxPz0gRBoMrT48gS2nk3NgfUFWvve6W959RDfIDql3Zod-hWAwASkWI3Prnrpu1Xxrxse8aBzrnyVHAFPoM2lPvNxHthhpmGvYyFTc6tFbwbUj9SICa8ZlRMJjyGRtZEaVd2Hq-mdknQaQ42tFcbDHRAC_xiIqHem9AaDLinbT2YOL4LI4b4851a90MChoFWXO7_VD-pZdhi4znL5HD3Ww8k14vioXoMbB-N13OsG_3SeXBLF_7XQ7uMzku2Rj--VcLLoKp_VMGmLOZVIrbSmzbM8OyLcZe8aw1mlZNGwsgqke5dljOymbuny50YqE5KzLnyqtbBMbFlTOdzoBf3Q',
-    'Access-Control-Allow-Origin': "http://localhost:8000"
+   await fetch(apiURL+'/api/getCurrentCommande/'+id ,{headers: {
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTc4NzE5ODEsImV4cCI6MTYxNzg3NTU4MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnJAaWR2ZXkuY29tIn0.HJropZil6dv5Y3OWkY-e8etYFy8Qn6erjVmESmE-j5_Lh0lz6V4LNv3lJ_DL3EFCOUipiAYH-ma_E0Qvof6AM-ucMYR7_yS6LM9F5a0vQBjygZTF1N45OCGThEyqh_kB0gWrqYpC828DUUy-GmoM-b71Ml57lU0h_YttynOwXEuCo5HakzOQPFMCtSyo_oPLfwYJu5WP-Q4RU2M4fmGvzvf2aI-48lLkJZ_OWOMSQDCeu4SYCHjlz-am4ENlAZAlbg0bSTilTjsQUpePwX7h4hfXJWVuEbpQ8KKb23VuQ4DXdzw2oDRt7pzo8It0QabWPiPU8AQ6vIJ3EyTcJOTfHg'
+    
   }})
     .then(response=> response.json()).then(data=>this.setState({currentCommand:data}));
     const action = {type:"GET_CURRENT_COMMAND", value:this.state.currentCommand}
@@ -53,9 +53,9 @@ class TheHeader extends Component {
   }
   handleClickCanceledCommand = async (id)=>{
     console.log('test',id);
-   const canceled = await fetch('/api/getCommandeAnnulee/'+id ,{headers: {
-    'Access-Control-Allow-Origin': "http://localhost:8000",
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTc3MjU2NjEsImV4cCI6MTYxNzcyOTI2MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnJAaWR2ZXkuY29tIn0.HcxPz0gRBoMrT48gS2nk3NgfUFWvve6W959RDfIDql3Zod-hWAwASkWI3Prnrpu1Xxrxse8aBzrnyVHAFPoM2lPvNxHthhpmGvYyFTc6tFbwbUj9SICa8ZlRMJjyGRtZEaVd2Hq-mdknQaQ42tFcbDHRAC_xiIqHem9AaDLinbT2YOL4LI4b4851a90MChoFWXO7_VD-pZdhi4znL5HD3Ww8k14vioXoMbB-N13OsG_3SeXBLF_7XQ7uMzku2Rj--VcLLoKp_VMGmLOZVIrbSmzbM8OyLcZe8aw1mlZNGwsgqke5dljOymbuny50YqE5KzLnyqtbBMbFlTOdzoBf3Q'
+   const canceled = await fetch(apiURL+'/api/getCommandeAnnulee/'+id ,{headers: {
+
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTc4NzE5ODEsImV4cCI6MTYxNzg3NTU4MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnJAaWR2ZXkuY29tIn0.HJropZil6dv5Y3OWkY-e8etYFy8Qn6erjVmESmE-j5_Lh0lz6V4LNv3lJ_DL3EFCOUipiAYH-ma_E0Qvof6AM-ucMYR7_yS6LM9F5a0vQBjygZTF1N45OCGThEyqh_kB0gWrqYpC828DUUy-GmoM-b71Ml57lU0h_YttynOwXEuCo5HakzOQPFMCtSyo_oPLfwYJu5WP-Q4RU2M4fmGvzvf2aI-48lLkJZ_OWOMSQDCeu4SYCHjlz-am4ENlAZAlbg0bSTilTjsQUpePwX7h4hfXJWVuEbpQ8KKb23VuQ4DXdzw2oDRt7pzo8It0QabWPiPU8AQ6vIJ3EyTcJOTfHg'
   }})
     .then(response=> response.json()).then(data=>this.setState({canceledcCommand:data}));
     console.log("hello",canceled);
