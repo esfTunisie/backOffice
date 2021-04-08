@@ -4,12 +4,19 @@ import {
   Select,
 } from 'antd';
 
-const ThirdForm = () => {
-  const [componentSize, setComponentSize] = useState('default');
 
-  const onFormLayoutChange = ({ size }) => {
-    setComponentSize(size);
-  };
+
+class ThirdForm extends React.Component {
+  //const [componentSize, setComponentSize] = useState('default');
+  constructor(props){
+    super(props);
+    this.state = {
+      componentSize: 'default',
+      
+             };
+  }
+
+ render(){
 
   return (
     <>
@@ -21,11 +28,9 @@ const ThirdForm = () => {
           span: 14,
         }}
         layout="horizontal"
-        initialValues={{
-          size: componentSize,
-        }}
-        onValuesChange={onFormLayoutChange}
-        size={componentSize}
+
+       
+      
         className="ant-form-pers"
       >
         <Form.Item label="Offre">
@@ -47,6 +52,8 @@ const ThirdForm = () => {
       </Form>
     </>
   );
+ }
+  
 };
 
 export default ThirdForm

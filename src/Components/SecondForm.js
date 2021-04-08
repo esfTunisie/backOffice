@@ -4,12 +4,21 @@ import {
   Input,
 } from 'antd';
 
-const SecondForm = () => {
-  const [componentSize, setComponentSize] = useState('default');
-
-  const onFormLayoutChange = ({ size }) => {
+class SecondForm extends React.Component {
+ // const [componentSize, setComponentSize] = useState('default');
+ constructor(props){
+  super(props);
+  this.state = {
+    componentSize: 'default',
+    size: null
+           };
+}
+  
+ /* const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
-  };
+  };*/
+
+render(){
 
   return (
     <>
@@ -18,38 +27,39 @@ const SecondForm = () => {
           span: 4,
         }}
         wrapperCol={{
-          span: 14,
+          span: 15,
         }}
         layout="horizontal"
-        initialValues={{
-          size: componentSize,
-        }}
-        onValuesChange={onFormLayoutChange}
-        size={componentSize}
+       
+       
+       
         className="ant-form-pers"
       >
 
         <Form.Item label="Raison sociale">
-          <Input />
+          <Input className="second-form-align"  />
         </Form.Item>
         <Form.Item label="Adresse">
-          <Input />
+          <Input className="second-form-align"  />
         </Form.Item>
-        <Form.Item label="Catégorie des produits">
-          <Input />
+        <Form.Item label="produits">
+          <Input className="second-form-align"  />
         </Form.Item>
-        <Form.Item label="lien de la page facebook">
-          <Input />
+        <Form.Item label="facebook">
+          <Input className="second-form-align"  />
         </Form.Item>
-        <Form.Item label="lien du compte instagram">
-          <Input />
+        <Form.Item label="instagram">
+          <Input className="second-form-align"  />
         </Form.Item>
-        <Form.Item label="lien du site web">
-          <Input />
+        <Form.Item label="site web">
+          <Input className="second-form-align"  />
         </Form.Item>
       </Form>
     </>
   );
+
+}
+
 };
 
 export default SecondForm
