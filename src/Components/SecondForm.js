@@ -37,14 +37,17 @@ render(){
       >
 
         <Form.Item label="Raison sociale">
-          <Input className="second-form-align"  />
+          <Input className="second-form-align" onChange={(e)=>this.props.onChangeStepTwoData(e.target.value,'raisonsociale',0)} value={this.props.stepTwoData.raisonsociale}  />
         </Form.Item>
+        {this.props.stepTwoError[0]&&<div style={{color:'red'}}>{this.props.stepTwoErrorMsg[0]}</div>}
         <Form.Item label="Adresse">
-          <Input className="second-form-align"  />
+          <Input className="second-form-align" onChange={(e)=>this.props.onChangeStepTwoData(e.target.value,'adresse',1)} value={this.props.stepTwoData.adresse}  />
         </Form.Item>
+        {this.props.stepTwoError[1]&&<div style={{color:'red'}}>{this.props.stepTwoErrorMsg[1]}</div>}
         <Form.Item label="produits">
-          <Input className="second-form-align"  />
+          <Input className="second-form-align" onChange={(e)=>this.props.onChangeStepTwoData(e.target.value,'produits',2)} value={this.props.stepTwoData.produits}  />
         </Form.Item>
+        {this.props.stepTwoError[2]&&<div style={{color:'red'}}>{this.props.stepTwoErrorMsg[2]}</div>}
         <Form.Item label="facebook">
           <Input className="second-form-align"  />
         </Form.Item>
