@@ -1,22 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Form,
   Input,
 } from 'antd';
 
 class SecondForm extends React.Component {
- // const [componentSize, setComponentSize] = useState('default');
  constructor(props){
   super(props);
   this.state = {
-    componentSize: 'default',
-    size: null
+
            };
 }
   
- /* const onFormLayoutChange = ({ size }) => {
-    setComponentSize(size);
-  };*/
 
 render(){
 

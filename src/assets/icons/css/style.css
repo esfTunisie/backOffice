@@ -75,3 +75,13 @@
 .second-form-align{
     padding-left:15px ;
 }
+
+.upgrade_section{
+    display:flex;
+}
+.button_upgrade_style{
+width: 14%;
+height: 67%;
+margin-left: 3%;
+margin-top: 0.5%;
+}

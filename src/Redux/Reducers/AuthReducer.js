@@ -3,7 +3,11 @@ const initialState = {
   client: null,
   new_command:null,
   current_command:null,
-  canceled_command:null
+  canceled_command:null,
+  steps1:{},
+  steps2:{},
+  steps3:{}
+
 };
 
 function AuthReducer(state = initialState, action) {
@@ -27,6 +31,21 @@ function AuthReducer(state = initialState, action) {
             return{
               ...state,
               canceled_command:action.value,
+            };
+        case "STEP_FORM_ONE":
+          return{
+            ...state,
+            steps1:action.value,
+          };
+          case "STEP_FORM_TWO":
+            return{
+              ...state,
+              steps2:action.value
+            };
+          case "STEP_FORM_THREE":
+            return{
+              ...state,
+              steps3:action.value
             };
     case "LOGOUT":
       return {
