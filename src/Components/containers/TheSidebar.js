@@ -11,7 +11,7 @@ import {
   CSidebarNavItem,
 } from '@coreui/react'
 
-import CIcon from '@coreui/icons-react'
+
 
 // sidebar nav config
 import navigation from './_nav'
@@ -26,7 +26,7 @@ const TheSidebar = () => {
       onShowChange={(val) => dispatch({type: 'set', sidebarShow: val })}
     >
       <CSidebarBrand className="d-md-down-none" to="/">
-      <img width="20%" src="/assets/images/logo-ESF.png" alt=""/>
+      <img width="20%" src="/assets/images/shifti-logo-icon.png" alt=""/>
       </CSidebarBrand>
       <CSidebarNav>
 

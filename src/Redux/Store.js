@@ -4,7 +4,7 @@ import logger from "redux-logger-simple";
 import { persistStore, persistReducer } from "redux-persist";
 import storageLocal  from "redux-persist/lib/storage/session";
 import AuthReducer from "./Reducers/AuthReducer"
-import TemplateReducer from "./Reducers/TemplateResducer"
+
 
 
 const persistConfig = {
@@ -25,8 +25,7 @@ const enhancer = composeEnhancers(
   applyMiddleware(...middleware, logger)
 );
 const reducers = combineReducers({
-  auth: AuthReducer,
-  temp: TemplateReducer
+  auth: AuthReducer
 });
 
 const persistedReducers = persistReducer(persistConfig, reducers);

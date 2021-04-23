@@ -7,18 +7,20 @@ import {
   TheSidebar,
   TheFooter,
   TheHeader
-} from '../containers/index'
+} from '../Components/containers/index'
 
 import { apiURL } from '../Config/Config';
 import { connect } from 'react-redux';
-import NewCommand from '../Components/NewCommand';
-import CommandAbondonnée from '../Components/CommandAbondonnée';
-import CommandAnnulée from '../Components/CommandAnnulée';
-import CurrentCommand from '../Components/CurrentCommand';
-import ApiPrestaForm from '../Components/ApiPrestaForm';
+import NewCommand from '../Components/CommandePrestashopApi/NewCommand';
+import CommandAbondonnée from '../Components/CommandePrestashopApi/CommandAbondonnée';
+import CommandAnnulée from '../Components/CommandePrestashopApi/CommandAnnulée';
+import CurrentCommand from '../Components/CommandePrestashopApi/CurrentCommand';
+import ApiPrestaForm from '../Components/ApiPrestaShopForm/ApiPrestaForm';
 import Formtest from '../Components/Formtest';
-import StepsForms from '../Components/StepsForms';
-import CanceledCommand from '../Components/CanceledCommand';
+import StepsForms from '../Components/RegisterClientBackOff/StepsForms';
+import CanceledCommand from '../Components/CommandePrestashopApi/CanceledCommand';
+import Settings from '../Components/Settings';
+import UpgradeOffre from '../Components/UpgradeOffre';
 
 class MainRoute extends Component{
 
@@ -69,6 +71,8 @@ console.log(DataJson);
            <Route path="/commandes_annulées" component={CanceledCommand}  /> 
            <Route path="/commandes_en_cours" component={CurrentCommand}  /> 
            <Route path="/message" component={StepsForms} />
+           <Route path="/settings" component={Settings} />
+           <Route path="/upgrade" component={UpgradeOffre} />
            
           </div>
           <Route>

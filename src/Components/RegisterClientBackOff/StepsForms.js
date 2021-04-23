@@ -5,6 +5,8 @@ import SecondForm from "./SecondForm";
 import isEmpty from 'validator/lib/isEmpty';
 import isEmail from 'validator/lib/isEmail';
 import ThirdForm from "./ThirdForm";
+import { connect } from "react-redux";
+import { apiURL } from "../../Config/Config";
 class StepForms extends React.Component {
   constructor(props) {
     super(props);
@@ -33,10 +35,12 @@ class StepForms extends React.Component {
       ]}},
       stepThreeError:[false,false],
       stepThreeErrorMsg:['',''],
+      passwordValue:""
    
     };
   }
     onChangeStepOneData=(value,key,index)=>{
+      
       let aux ={...this.state.stepOneData}
       aux[key]=value
       if(key=="name"){
@@ -67,7 +71,7 @@ class StepForms extends React.Component {
         }
       }
       if(key=="password"){
-        
+      
         if(isEmpty(value)){
           aux.validation.error[index]=true
           aux.validation.errorMsg[index]='merci de remplir votre mot de passe'
@@ -78,16 +82,17 @@ class StepForms extends React.Component {
         }
         
         else{
+          this.setState({passwordValue:value})
           aux.validation.error[index]=false
           aux.validation.errorMsg[index]=''
-          var passwordValue= value
+         
           
           
         }
       }
       if(key=="password2"){
-       
-        console.log("pass",value);
+        
+        
         if(isEmpty(value)){
           
           aux.validation.error[index]=true
@@ -96,7 +101,8 @@ class StepForms extends React.Component {
         {
           aux.validation.error[index]=true
           aux.validation.errorMsg[index]='le mot de passe doit contient 8 caractére'
-        } if(passwordValue != value){
+        } if(value !== this.state.passwordValue){
+         
           aux.validation.error[index]=true
           aux.validation.errorMsg[index]='password not match'
         }
@@ -108,6 +114,8 @@ class StepForms extends React.Component {
       }
 
       this.setState({stepOneData:aux})
+      const action = {type:"STEP_FORM_ONE", value:aux}
+      this.props.dispatch(action)
     }
     onChangeStepTwoData=(value,key,index)=>{
       let aux ={...this.state.stepTwoData}
@@ -144,6 +152,8 @@ class StepForms extends React.Component {
       }
     
       this.setState({stepTwoData:aux})
+      const action = {type:"STEP_FORM_TWO", value:this.state.stepTwoData}
+      this.props.dispatch(action)
     }
     onChangeStepThreeData=(value,key,index)=>{
       console.log("hello from three");
@@ -177,7 +187,11 @@ class StepForms extends React.Component {
      
     
       this.setState({stepThreeData:aux})
+
+      const action = {type:"STEP_FORM_THREE", value:this.state.stepThreeData}
+      this.props.dispatch(action)
     }
+
     nextStep=()=>{
       console.log('hello');
       if(this.state.current===0){
@@ -207,9 +221,53 @@ class StepForms extends React.Component {
       this.setState({current: this.state.current-1})
     };
 
+    handleRegisterForm = (evt)=>{
+      evt.preventDefault();
+      const stepOne = this.props.auth.steps1
+      console.log(stepOne.name);
+   
+
+
+      let formdata =new FormData()
+      formdata.append('name',stepOne.name)
+      formdata.append('email',stepOne.email)
+      formdata.append('password',stepOne.password)
+      formdata.append('password2',stepOne.password2)
+      
+      fetch(apiURL+'/register',{method:'POST',
+      body:formdata
+       
+      }).then(res=>res.json())
+      .catch(error => console.error('Err',error))
+      .then(response => console.log('Succ',response))
+    }
+
+    handleClickDoneForm =  (evt)=>{
+      evt.preventDefault();
+
+    const stepTwo = this.props.auth.steps2
+    const stepThree = this.props.auth.steps3
+    const stepfinal = {...stepTwo, ...stepThree}
+    
+    
+ 
+       
+       fetch(apiURL+'/api/magasin',{headers:{
+          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTg5MDMyNDMsImV4cCI6MTYxODkwNjg0Mywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.n1tmNi5CB59np6Fo2gSmkeLXzpLrd_ukpVRRdhMIgWX-A2MdDjqDg-ODwhyaeouM5LtOaAzuTRIpmYx-tI7ehBfTHjttVP8-zzgKBvpZRFbJaG5nOcRA-Qiu-Br74CiCYWjeoZXDo-P0eJhcY2EcSwRrI8lBnU4ImUPi0zGyHOJSzHTGSC_lCzrtnOMrREHLZSidlNKPz4FKpX61ofyuxz2N5gKAOrd8nuevVGtyoSbphdPyUubEUvquhnQevkzxIPlWq76lF1t8qXfjtQx-PYtGhcdCQPZ61bqaE2YAZaULDiK0HUeBzf4Oz4Ca94HjPwmWJNHcSJ-6cb1Oa4QWaw'
+        },
+        method:'POST',
+        body: JSON.stringify(stepfinal)
+      
+      }).then(res=>res.json())
+      .catch(error => console.error('Err',error))
+      .then(response => console.log('Succ',response))
+        
+    }
+
     
     render(){
       const {Step} = Steps
+      console.log("stepOne:",this.state.stepOneData);
       const steps = [
         {
           title: "Inscription",
@@ -262,7 +320,7 @@ class StepForms extends React.Component {
           {this.state.current === 2 && (
             <Button
               type="primary"
-              onClick={ this.onChangeStepThreeData}
+              onClick={this.handleClickDoneForm,this.handleRegisterForm}
             >
               Done
             </Button>
@@ -278,7 +336,22 @@ class StepForms extends React.Component {
     )
 }
 }
-export default StepForms;
+
+
+const mapStateToProps = (state, ownProps) => ({
+  auth: state.auth
+})
+
+
+const mapDispatchToProps = (dispatch) => {
+return {
+dispatch: (action) => {
+dispatch(action);
+},
+};
+};
+export default connect (mapStateToProps, mapDispatchToProps)(StepForms)
+
 
 
 
