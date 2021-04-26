@@ -3,7 +3,8 @@ const initialState = {
   client: null,
   new_command:null,
   current_command:null,
-  canceled_command:null
+  canceled_command:null,
+  product:null
 };
 
 function AuthReducer(state = initialState, action) {
@@ -22,6 +23,11 @@ function AuthReducer(state = initialState, action) {
           return{
             ...state,
             current_command:action.value,
+          };
+          case "GET_PRODUCT":
+          return{
+            ...state,
+            product:action.value,
           };
           case "GET_CANCELED_COMMAND":
             return{

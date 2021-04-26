@@ -22,7 +22,7 @@ componentDidMount(){
 
 getCurrentCommande=() =>{
     console.log("test1");
-    fetch(apiURL+'/getCurrentCommande')
+    fetch(apiURL+'/api/getCurrentCommande')
     .then(response => response.json()).then(data => this.setState({ dataCommande:data }));
     
     

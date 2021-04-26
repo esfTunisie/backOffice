@@ -24,28 +24,27 @@ class TheHeader extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      
-             };
+    this.state = {};
   }
   
  handleClick = async (id)=>{
 
    await fetch('/api/getNewCommande/'+id ,{headers: {
-    'Access-Control-Allow-Origin': "http://localhost:8000",
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTc3MjU2NjEsImV4cCI6MTYxNzcyOTI2MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnJAaWR2ZXkuY29tIn0.HcxPz0gRBoMrT48gS2nk3NgfUFWvve6W959RDfIDql3Zod-hWAwASkWI3Prnrpu1Xxrxse8aBzrnyVHAFPoM2lPvNxHthhpmGvYyFTc6tFbwbUj9SICa8ZlRMJjyGRtZEaVd2Hq-mdknQaQ42tFcbDHRAC_xiIqHem9AaDLinbT2YOL4LI4b4851a90MChoFWXO7_VD-pZdhi4znL5HD3Ww8k14vioXoMbB-N13OsG_3SeXBLF_7XQ7uMzku2Rj--VcLLoKp_VMGmLOZVIrbSmzbM8OyLcZe8aw1mlZNGwsgqke5dljOymbuny50YqE5KzLnyqtbBMbFlTOdzoBf3Q'
+   
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0MzcwMDksImV4cCI6MTYyMzAzNzAwOSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtZWQuYmVubWFraGxvdWZAeWFob28uZnIifQ.HNo8jQNQ2OtgV5xxtZH51A0RPJ6QJD6xgwVCQKl0a0ZPF7zs1kPAAWzlkfvm-5pKoJjrk77nu1QTSvrV0RT3xdQJp8DfNgGUhEb9v5W4bRqBSZ5isLc35CpOWCPvn7xhzhdlNCwgtLpVfMCPYGJf3Y8gjYdIqicBXOvbtY7DLfpxormiS--g9sL2eZ8Wkp9LqGavD_XFGXr68YcjnOCsNDgYPtbQojxx42XN2h9udzsr23JskX2vx09nDvhd9zOu-AkVw1pjSrj4ONptFT38RDgYyX_wPXcbyj6tudyJb6ZmfI94OjXrt76lVH0KppylryI6yn7Bjqn90bk4C_A0Yw'
   }})
     .then(response => response.json()).then(data => this.setState({ newCommand:data }));
     const action = {type:"GET_NEW_COMMAND", value:this.state.newCommand}
       this.props.dispatch(action)
       this.handleClickCurrent(id);
       this.handleClickCanceledCommand(id);
+      this.handleClickProduct(id);
   }
   handleClickCurrent = async (id)=>{
     console.log('test',id);
    await fetch('/api/getCurrentCommande/'+id ,{headers: {
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTc3MjU2NjEsImV4cCI6MTYxNzcyOTI2MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnJAaWR2ZXkuY29tIn0.HcxPz0gRBoMrT48gS2nk3NgfUFWvve6W959RDfIDql3Zod-hWAwASkWI3Prnrpu1Xxrxse8aBzrnyVHAFPoM2lPvNxHthhpmGvYyFTc6tFbwbUj9SICa8ZlRMJjyGRtZEaVd2Hq-mdknQaQ42tFcbDHRAC_xiIqHem9AaDLinbT2YOL4LI4b4851a90MChoFWXO7_VD-pZdhi4znL5HD3Ww8k14vioXoMbB-N13OsG_3SeXBLF_7XQ7uMzku2Rj--VcLLoKp_VMGmLOZVIrbSmzbM8OyLcZe8aw1mlZNGwsgqke5dljOymbuny50YqE5KzLnyqtbBMbFlTOdzoBf3Q',
-    'Access-Control-Allow-Origin': "http://localhost:8000"
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0MzcwMDksImV4cCI6MTYyMzAzNzAwOSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtZWQuYmVubWFraGxvdWZAeWFob28uZnIifQ.HNo8jQNQ2OtgV5xxtZH51A0RPJ6QJD6xgwVCQKl0a0ZPF7zs1kPAAWzlkfvm-5pKoJjrk77nu1QTSvrV0RT3xdQJp8DfNgGUhEb9v5W4bRqBSZ5isLc35CpOWCPvn7xhzhdlNCwgtLpVfMCPYGJf3Y8gjYdIqicBXOvbtY7DLfpxormiS--g9sL2eZ8Wkp9LqGavD_XFGXr68YcjnOCsNDgYPtbQojxx42XN2h9udzsr23JskX2vx09nDvhd9zOu-AkVw1pjSrj4ONptFT38RDgYyX_wPXcbyj6tudyJb6ZmfI94OjXrt76lVH0KppylryI6yn7Bjqn90bk4C_A0Yw',
+    
   }})
     .then(response=> response.json()).then(data=>this.setState({currentCommand:data}));
     const action = {type:"GET_CURRENT_COMMAND", value:this.state.currentCommand}
@@ -54,16 +53,27 @@ class TheHeader extends Component {
   handleClickCanceledCommand = async (id)=>{
     console.log('test',id);
    const canceled = await fetch('/api/getCommandeAnnulee/'+id ,{headers: {
-    'Access-Control-Allow-Origin': "http://localhost:8000",
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTc3MjU2NjEsImV4cCI6MTYxNzcyOTI2MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnJAaWR2ZXkuY29tIn0.HcxPz0gRBoMrT48gS2nk3NgfUFWvve6W959RDfIDql3Zod-hWAwASkWI3Prnrpu1Xxrxse8aBzrnyVHAFPoM2lPvNxHthhpmGvYyFTc6tFbwbUj9SICa8ZlRMJjyGRtZEaVd2Hq-mdknQaQ42tFcbDHRAC_xiIqHem9AaDLinbT2YOL4LI4b4851a90MChoFWXO7_VD-pZdhi4znL5HD3Ww8k14vioXoMbB-N13OsG_3SeXBLF_7XQ7uMzku2Rj--VcLLoKp_VMGmLOZVIrbSmzbM8OyLcZe8aw1mlZNGwsgqke5dljOymbuny50YqE5KzLnyqtbBMbFlTOdzoBf3Q'
+   
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0MzcwMDksImV4cCI6MTYyMzAzNzAwOSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtZWQuYmVubWFraGxvdWZAeWFob28uZnIifQ.HNo8jQNQ2OtgV5xxtZH51A0RPJ6QJD6xgwVCQKl0a0ZPF7zs1kPAAWzlkfvm-5pKoJjrk77nu1QTSvrV0RT3xdQJp8DfNgGUhEb9v5W4bRqBSZ5isLc35CpOWCPvn7xhzhdlNCwgtLpVfMCPYGJf3Y8gjYdIqicBXOvbtY7DLfpxormiS--g9sL2eZ8Wkp9LqGavD_XFGXr68YcjnOCsNDgYPtbQojxx42XN2h9udzsr23JskX2vx09nDvhd9zOu-AkVw1pjSrj4ONptFT38RDgYyX_wPXcbyj6tudyJb6ZmfI94OjXrt76lVH0KppylryI6yn7Bjqn90bk4C_A0Yw'
   }})
     .then(response=> response.json()).then(data=>this.setState({canceledcCommand:data}));
     console.log("hello",canceled);
     const action = {type:"GET_CANCELED_COMMAND", value:this.state.canceledcCommand}
     this.props.dispatch(action)
   }
+
+  handleClickProduct = async (id)=>{
+  
+   await fetch('/api/getAllProduct/'+id ,{headers: {
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0MzcwMDksImV4cCI6MTYyMzAzNzAwOSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtZWQuYmVubWFraGxvdWZAeWFob28uZnIifQ.HNo8jQNQ2OtgV5xxtZH51A0RPJ6QJD6xgwVCQKl0a0ZPF7zs1kPAAWzlkfvm-5pKoJjrk77nu1QTSvrV0RT3xdQJp8DfNgGUhEb9v5W4bRqBSZ5isLc35CpOWCPvn7xhzhdlNCwgtLpVfMCPYGJf3Y8gjYdIqicBXOvbtY7DLfpxormiS--g9sL2eZ8Wkp9LqGavD_XFGXr68YcjnOCsNDgYPtbQojxx42XN2h9udzsr23JskX2vx09nDvhd9zOu-AkVw1pjSrj4ONptFT38RDgYyX_wPXcbyj6tudyJb6ZmfI94OjXrt76lVH0KppylryI6yn7Bjqn90bk4C_A0Yw',
+    
+  }})
+    .then(response=> response.json()).then(data=>this.setState({product:data}));
+    const action = {type:"GET_PRODUCT", value:this.state.product}
+    this.props.dispatch(action)
+  }
 render(){
-  console.log('eesai', this.state);
+  console.log('eesaiiiiiiiiiiiiiiii', this.state);
   return (
     <CHeader withSubheader>
       <CToggler

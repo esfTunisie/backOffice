@@ -19,6 +19,7 @@ import ApiPrestaForm from '../Components/ApiPrestaForm';
 import Formtest from '../Components/Formtest';
 import StepsForms from '../Components/StepsForms';
 import CanceledCommand from '../Components/CanceledCommand';
+import ProductList from '../Components/ProductList';
 
 class MainRoute extends Component{
 
@@ -68,6 +69,7 @@ console.log(DataJson);
            <Route path="/panier_abondonnées" component={CommandAbondonnée}  /> 
            <Route path="/commandes_annulées" component={CanceledCommand}  /> 
            <Route path="/commandes_en_cours" component={CurrentCommand}  /> 
+           <Route path="/product_list" component={ProductList}  /> 
            <Route path="/message" component={StepsForms} />
            
           </div>
