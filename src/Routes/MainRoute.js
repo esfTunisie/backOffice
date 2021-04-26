@@ -21,6 +21,7 @@ import StepsForms from '../Components/RegisterClientBackOff/StepsForms';
 import CanceledCommand from '../Components/CommandePrestashopApi/CanceledCommand';
 import Settings from '../Components/Settings';
 import UpgradeOffre from '../Components/UpgradeOffre';
+import ProductList from '../Components/ProductList';
 
 class MainRoute extends Component{
 
@@ -70,6 +71,7 @@ console.log(DataJson);
            <Route path="/panier_abondonnées" component={CommandAbondonnée}  /> 
            <Route path="/commandes_annulées" component={CanceledCommand}  /> 
            <Route path="/commandes_en_cours" component={CurrentCommand}  /> 
+           <Route path="/product_list" component={ProductList}  /> 
            <Route path="/message" component={StepsForms} />
            <Route path="/settings" component={Settings} />
            <Route path="/upgrade" component={UpgradeOffre} />

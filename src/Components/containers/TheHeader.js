@@ -23,27 +23,26 @@ class TheHeader extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      
-             };
+    this.state = {};
   }
   
  handleClick = async (id)=>{
 
    await fetch(apiURL+'/api/getNewCommande/'+id ,{headers: {
    
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTg5OTMyODcsImV4cCI6MTYxODk5Njg4Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.UEfJfs3ho7h5RfhajknQliNf6A_Y7dioN0R6X-mxaihu5L_4GjIfXmd26bsnj9GJNFz6A6hvx5Kurs5LhF-Kl7OBPDWM8Lm3h_COk9l_-IAnG0Mn5dXlZwk7lMJsCCPpCsAyzpBnMzndJNfxXI_FgXvimN7UaByWRuvnuX5HXWw_9ex9CavQ4ZqJRvruV-DHzrhzl0q7Ygoz1Gg-uxHhn2WpNmmOnWywESlOEs71l4gMcIfndTW6vrKlj4gBQb2qS6ASjImzdM5-v3eZek8xL47P_7tcQjO1AhW-CtWnb2lL7tURxdNBVtEE-voeUK_C62RXovmeQ6WuwY-z8INn0Q'
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0NDA0MjcsImV4cCI6MTYyMzA0MDQyNywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtZWQuYmVubWFraGxvdWZAeWFob28uZnIifQ.fGr-Pb0tOEmeCK5c95HrD8HaOUuhOuyr8fjOgbLEE90wjAa4TR7Llpbt7Ic8cZHepBKOkIY67xYCc2nOPsrBFGVcDEnHtBEFhiDhNr_monews1qpuohEUJlmfq0_OJ98ry3PLKpdTFaUeeo1VFuJGfjWfUDzP97Tu8ff1a6hYsnju9KASo_PDQ5OuHrPCwkOvEEqWvGVYijbi9Gi-hK5SzS_lP-M2ozXs7kjKHRzw3mhTqYE_5m1W_sRBbnAzgOn0lDzJqRareRGrN0h6DhFbHCAcY1QIsOby2pNnqVt-eASNeMF44-DeyIUlXZ3jBBY4S8bZeWuh1EToWkXHjw17A'
   }})
     .then(response => response.json()).then(data => this.setState({ newCommand:data }));
     const action = {type:"GET_NEW_COMMAND", value:this.state.newCommand}
       this.props.dispatch(action)
       this.handleClickCurrent(id);
       this.handleClickCanceledCommand(id);
+      this.handleClickProduct(id);
   }
   handleClickCurrent = async (id)=>{
     console.log('test',id);
    await fetch(apiURL+'/api/getCurrentCommande/'+id ,{headers: {
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTg5OTMyODcsImV4cCI6MTYxODk5Njg4Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.UEfJfs3ho7h5RfhajknQliNf6A_Y7dioN0R6X-mxaihu5L_4GjIfXmd26bsnj9GJNFz6A6hvx5Kurs5LhF-Kl7OBPDWM8Lm3h_COk9l_-IAnG0Mn5dXlZwk7lMJsCCPpCsAyzpBnMzndJNfxXI_FgXvimN7UaByWRuvnuX5HXWw_9ex9CavQ4ZqJRvruV-DHzrhzl0q7Ygoz1Gg-uxHhn2WpNmmOnWywESlOEs71l4gMcIfndTW6vrKlj4gBQb2qS6ASjImzdM5-v3eZek8xL47P_7tcQjO1AhW-CtWnb2lL7tURxdNBVtEE-voeUK_C62RXovmeQ6WuwY-z8INn0Q'
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0NDA0MjcsImV4cCI6MTYyMzA0MDQyNywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtZWQuYmVubWFraGxvdWZAeWFob28uZnIifQ.fGr-Pb0tOEmeCK5c95HrD8HaOUuhOuyr8fjOgbLEE90wjAa4TR7Llpbt7Ic8cZHepBKOkIY67xYCc2nOPsrBFGVcDEnHtBEFhiDhNr_monews1qpuohEUJlmfq0_OJ98ry3PLKpdTFaUeeo1VFuJGfjWfUDzP97Tu8ff1a6hYsnju9KASo_PDQ5OuHrPCwkOvEEqWvGVYijbi9Gi-hK5SzS_lP-M2ozXs7kjKHRzw3mhTqYE_5m1W_sRBbnAzgOn0lDzJqRareRGrN0h6DhFbHCAcY1QIsOby2pNnqVt-eASNeMF44-DeyIUlXZ3jBBY4S8bZeWuh1EToWkXHjw17A'
     
   }})
     .then(response=> response.json()).then(data=>this.setState({currentCommand:data}));
@@ -54,15 +53,25 @@ class TheHeader extends Component {
   
     await fetch(apiURL+'/api/getCommandeAnnulee/'+id ,{headers: {
 
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTg5OTMyODcsImV4cCI6MTYxODk5Njg4Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.UEfJfs3ho7h5RfhajknQliNf6A_Y7dioN0R6X-mxaihu5L_4GjIfXmd26bsnj9GJNFz6A6hvx5Kurs5LhF-Kl7OBPDWM8Lm3h_COk9l_-IAnG0Mn5dXlZwk7lMJsCCPpCsAyzpBnMzndJNfxXI_FgXvimN7UaByWRuvnuX5HXWw_9ex9CavQ4ZqJRvruV-DHzrhzl0q7Ygoz1Gg-uxHhn2WpNmmOnWywESlOEs71l4gMcIfndTW6vrKlj4gBQb2qS6ASjImzdM5-v3eZek8xL47P_7tcQjO1AhW-CtWnb2lL7tURxdNBVtEE-voeUK_C62RXovmeQ6WuwY-z8INn0Q'
+      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0NDA0MjcsImV4cCI6MTYyMzA0MDQyNywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtZWQuYmVubWFraGxvdWZAeWFob28uZnIifQ.fGr-Pb0tOEmeCK5c95HrD8HaOUuhOuyr8fjOgbLEE90wjAa4TR7Llpbt7Ic8cZHepBKOkIY67xYCc2nOPsrBFGVcDEnHtBEFhiDhNr_monews1qpuohEUJlmfq0_OJ98ry3PLKpdTFaUeeo1VFuJGfjWfUDzP97Tu8ff1a6hYsnju9KASo_PDQ5OuHrPCwkOvEEqWvGVYijbi9Gi-hK5SzS_lP-M2ozXs7kjKHRzw3mhTqYE_5m1W_sRBbnAzgOn0lDzJqRareRGrN0h6DhFbHCAcY1QIsOby2pNnqVt-eASNeMF44-DeyIUlXZ3jBBY4S8bZeWuh1EToWkXHjw17A'
   }})
     .then(response=> response.json()).then(data=>this.setState({canceledcCommand:data}));
     
     const action = {type:"GET_CANCELED_COMMAND", value:this.state.canceledcCommand}
     this.props.dispatch(action)
   }
+
+  handleClickProduct = async (id)=>{
+  
+   await fetch('/api/getAllProduct/'+id ,{headers: {
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0NDA0MjcsImV4cCI6MTYyMzA0MDQyNywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtZWQuYmVubWFraGxvdWZAeWFob28uZnIifQ.fGr-Pb0tOEmeCK5c95HrD8HaOUuhOuyr8fjOgbLEE90wjAa4TR7Llpbt7Ic8cZHepBKOkIY67xYCc2nOPsrBFGVcDEnHtBEFhiDhNr_monews1qpuohEUJlmfq0_OJ98ry3PLKpdTFaUeeo1VFuJGfjWfUDzP97Tu8ff1a6hYsnju9KASo_PDQ5OuHrPCwkOvEEqWvGVYijbi9Gi-hK5SzS_lP-M2ozXs7kjKHRzw3mhTqYE_5m1W_sRBbnAzgOn0lDzJqRareRGrN0h6DhFbHCAcY1QIsOby2pNnqVt-eASNeMF44-DeyIUlXZ3jBBY4S8bZeWuh1EToWkXHjw17A'
+  }})
+    .then(response=> response.json()).then(data=>this.setState({product:data}));
+    const action = {type:"GET_PRODUCT", value:this.state.product}
+    this.props.dispatch(action)
+  }
 render(){
-  console.log('eesai', this.state);
+  console.log('eesaiiiiiiiiiiiiiiii', this.state);
   return (
     <CHeader withSubheader>
       <CToggler

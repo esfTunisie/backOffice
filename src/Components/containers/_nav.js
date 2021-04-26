@@ -39,10 +39,22 @@ import CIcon from '@coreui/icons-react'
         _tag: 'CSidebarNavItem',
         name: 'Paniers abondannées',
         to: '/panier_abondonnées',
-      },
-    
+      },  
 ]
-
+  },
+  {
+    _tag: 'CSidebarNavDropdown',
+    name: 'Product',
+    route: '/Product',
+    icon: <CIcon name="cilBasket" customClasses="c-sidebar-nav-icon"/>,
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Liste des produits',
+        to: '/product_list',
+      
+      },   
+]
   },
   {
     _tag: 'CSidebarNavItem',
