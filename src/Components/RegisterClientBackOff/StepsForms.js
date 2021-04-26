@@ -253,7 +253,7 @@ class StepForms extends React.Component {
  
        
        fetch(apiURL+'/api/magasin',{headers:{
-          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTg5MDMyNDMsImV4cCI6MTYxODkwNjg0Mywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.n1tmNi5CB59np6Fo2gSmkeLXzpLrd_ukpVRRdhMIgWX-A2MdDjqDg-ODwhyaeouM5LtOaAzuTRIpmYx-tI7ehBfTHjttVP8-zzgKBvpZRFbJaG5nOcRA-Qiu-Br74CiCYWjeoZXDo-P0eJhcY2EcSwRrI8lBnU4ImUPi0zGyHOJSzHTGSC_lCzrtnOMrREHLZSidlNKPz4FKpX61ofyuxz2N5gKAOrd8nuevVGtyoSbphdPyUubEUvquhnQevkzxIPlWq76lF1t8qXfjtQx-PYtGhcdCQPZ61bqaE2YAZaULDiK0HUeBzf4Oz4Ca94HjPwmWJNHcSJ-6cb1Oa4QWaw'
+          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0MjYyNzAsImV4cCI6MTYxOTQyOTg3MCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.jOtz4CADIhM5vpKv-WDqVfxgTzd9fITOBYX5eNUlcgIlr7Omc5JKU4--drYzKSH70y1vONlRWO99jAZxVngI22SRJE2UjOjZlA_SllxuZqtcP-U91x2NE_s3nlADo-8Fr_TcRS2ryNYwRmdhTDI7FZxCBDtDdnG1g3xcX8YDLqckDNyGrqOKBUtt1_VgiIqKbC9D1MAcNCj0GQb4n8-SHaPVD5iKDIw_2ItIiHiPH9UdG1phMTfmbCpikaGRSER4Bg11cPax5AyFnNXxnF1rIlxfbfKn8pL38Jy-8pJyRkwMOtR9kJeQr4hodpsAxcP7XUVHGaw9im0IfI6rBH5Psg'
         },
         method:'POST',
         body: JSON.stringify(stepfinal)

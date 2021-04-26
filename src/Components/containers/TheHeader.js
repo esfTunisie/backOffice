@@ -32,7 +32,7 @@ class TheHeader extends Component {
 
    await fetch(apiURL+'/api/getNewCommande/'+id ,{headers: {
    
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTg5OTMyODcsImV4cCI6MTYxODk5Njg4Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.UEfJfs3ho7h5RfhajknQliNf6A_Y7dioN0R6X-mxaihu5L_4GjIfXmd26bsnj9GJNFz6A6hvx5Kurs5LhF-Kl7OBPDWM8Lm3h_COk9l_-IAnG0Mn5dXlZwk7lMJsCCPpCsAyzpBnMzndJNfxXI_FgXvimN7UaByWRuvnuX5HXWw_9ex9CavQ4ZqJRvruV-DHzrhzl0q7Ygoz1Gg-uxHhn2WpNmmOnWywESlOEs71l4gMcIfndTW6vrKlj4gBQb2qS6ASjImzdM5-v3eZek8xL47P_7tcQjO1AhW-CtWnb2lL7tURxdNBVtEE-voeUK_C62RXovmeQ6WuwY-z8INn0Q'
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0MjYyNzAsImV4cCI6MTYxOTQyOTg3MCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.jOtz4CADIhM5vpKv-WDqVfxgTzd9fITOBYX5eNUlcgIlr7Omc5JKU4--drYzKSH70y1vONlRWO99jAZxVngI22SRJE2UjOjZlA_SllxuZqtcP-U91x2NE_s3nlADo-8Fr_TcRS2ryNYwRmdhTDI7FZxCBDtDdnG1g3xcX8YDLqckDNyGrqOKBUtt1_VgiIqKbC9D1MAcNCj0GQb4n8-SHaPVD5iKDIw_2ItIiHiPH9UdG1phMTfmbCpikaGRSER4Bg11cPax5AyFnNXxnF1rIlxfbfKn8pL38Jy-8pJyRkwMOtR9kJeQr4hodpsAxcP7XUVHGaw9im0IfI6rBH5Psg'
   }})
     .then(response => response.json()).then(data => this.setState({ newCommand:data }));
     const action = {type:"GET_NEW_COMMAND", value:this.state.newCommand}
@@ -43,7 +43,7 @@ class TheHeader extends Component {
   handleClickCurrent = async (id)=>{
     console.log('test',id);
    await fetch(apiURL+'/api/getCurrentCommande/'+id ,{headers: {
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTg5OTMyODcsImV4cCI6MTYxODk5Njg4Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.UEfJfs3ho7h5RfhajknQliNf6A_Y7dioN0R6X-mxaihu5L_4GjIfXmd26bsnj9GJNFz6A6hvx5Kurs5LhF-Kl7OBPDWM8Lm3h_COk9l_-IAnG0Mn5dXlZwk7lMJsCCPpCsAyzpBnMzndJNfxXI_FgXvimN7UaByWRuvnuX5HXWw_9ex9CavQ4ZqJRvruV-DHzrhzl0q7Ygoz1Gg-uxHhn2WpNmmOnWywESlOEs71l4gMcIfndTW6vrKlj4gBQb2qS6ASjImzdM5-v3eZek8xL47P_7tcQjO1AhW-CtWnb2lL7tURxdNBVtEE-voeUK_C62RXovmeQ6WuwY-z8INn0Q'
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0MjYyNzAsImV4cCI6MTYxOTQyOTg3MCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.jOtz4CADIhM5vpKv-WDqVfxgTzd9fITOBYX5eNUlcgIlr7Omc5JKU4--drYzKSH70y1vONlRWO99jAZxVngI22SRJE2UjOjZlA_SllxuZqtcP-U91x2NE_s3nlADo-8Fr_TcRS2ryNYwRmdhTDI7FZxCBDtDdnG1g3xcX8YDLqckDNyGrqOKBUtt1_VgiIqKbC9D1MAcNCj0GQb4n8-SHaPVD5iKDIw_2ItIiHiPH9UdG1phMTfmbCpikaGRSER4Bg11cPax5AyFnNXxnF1rIlxfbfKn8pL38Jy-8pJyRkwMOtR9kJeQr4hodpsAxcP7XUVHGaw9im0IfI6rBH5Psg'
     
   }})
     .then(response=> response.json()).then(data=>this.setState({currentCommand:data}));
@@ -54,7 +54,7 @@ class TheHeader extends Component {
   
     await fetch(apiURL+'/api/getCommandeAnnulee/'+id ,{headers: {
 
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTg5OTMyODcsImV4cCI6MTYxODk5Njg4Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.UEfJfs3ho7h5RfhajknQliNf6A_Y7dioN0R6X-mxaihu5L_4GjIfXmd26bsnj9GJNFz6A6hvx5Kurs5LhF-Kl7OBPDWM8Lm3h_COk9l_-IAnG0Mn5dXlZwk7lMJsCCPpCsAyzpBnMzndJNfxXI_FgXvimN7UaByWRuvnuX5HXWw_9ex9CavQ4ZqJRvruV-DHzrhzl0q7Ygoz1Gg-uxHhn2WpNmmOnWywESlOEs71l4gMcIfndTW6vrKlj4gBQb2qS6ASjImzdM5-v3eZek8xL47P_7tcQjO1AhW-CtWnb2lL7tURxdNBVtEE-voeUK_C62RXovmeQ6WuwY-z8INn0Q'
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0MjYyNzAsImV4cCI6MTYxOTQyOTg3MCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.jOtz4CADIhM5vpKv-WDqVfxgTzd9fITOBYX5eNUlcgIlr7Omc5JKU4--drYzKSH70y1vONlRWO99jAZxVngI22SRJE2UjOjZlA_SllxuZqtcP-U91x2NE_s3nlADo-8Fr_TcRS2ryNYwRmdhTDI7FZxCBDtDdnG1g3xcX8YDLqckDNyGrqOKBUtt1_VgiIqKbC9D1MAcNCj0GQb4n8-SHaPVD5iKDIw_2ItIiHiPH9UdG1phMTfmbCpikaGRSER4Bg11cPax5AyFnNXxnF1rIlxfbfKn8pL38Jy-8pJyRkwMOtR9kJeQr4hodpsAxcP7XUVHGaw9im0IfI6rBH5Psg'
   }})
     .then(response=> response.json()).then(data=>this.setState({canceledcCommand:data}));
     

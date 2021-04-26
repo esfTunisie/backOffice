@@ -6,7 +6,9 @@ const initialState = {
   canceled_command:null,
   steps1:{},
   steps2:{},
-  steps3:{}
+  steps3:{},
+  username:"",
+  password:""
 
 };
 
@@ -46,6 +48,16 @@ function AuthReducer(state = initialState, action) {
             return{
               ...state,
               steps3:action.value
+            };
+            case "USERNAME":
+            return{
+              ...state,
+              username:action.value
+            };
+            case "PASSWORD":
+            return{
+              ...state,
+              password:action.value
             };
     case "LOGOUT":
       return {
