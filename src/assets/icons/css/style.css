@@ -4,10 +4,7 @@
 .c-sidebar .c-sidebar-brand{
     background-color: white;
 }
-.react-tabs__tab--selected{
-    border-color: #27558e !important;
-    background: #27558e !important ;
-}
+
 .react-tabs__tab-list {
     border-bottom: 2px solid #27558e !important;
     display: flex;
@@ -84,4 +81,15 @@ width: 14%;
 height: 67%;
 margin-left: 3%;
 margin-top: 0.5%;
+}
+.react-tabs__tab-list{
+    border-bottom: none !important
+}
+.react-tabs__tab{
+    height: 40px;
+    cursor: pointer;
+    color: white;
+}
+.react-tabs__tab--selected{
+    background-color: black !important;
 }

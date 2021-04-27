@@ -107,7 +107,7 @@ render(){
       <TabList>
       {this.props.auth.client && this.props.auth.client.map((el)=>(
        
-         <Tab onClick={()=>this.handleClick(el.id)}>{el.name}</Tab>
+         <Tab  onClick={()=>this.handleClick(el.id)}>{el.raison_sociale}</Tab>
          )
       )}
       </TabList>

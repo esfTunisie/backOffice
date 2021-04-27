@@ -12,6 +12,11 @@ const initialState = {
 
 function AuthReducer(state = initialState, action) {
   switch (action.type) {
+    case "GET_TOKEN":
+      return {
+        ...state,
+        token: action.token,
+      };
       case "GET_CLIENT":
       return {
         ...state,
