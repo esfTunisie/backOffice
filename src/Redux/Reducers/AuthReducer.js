@@ -7,7 +7,8 @@ const initialState = {
   steps1:{},
   steps2:{},
   steps3:{},
-  product:null
+  product:null,
+  isLogIn:false
 };
 
 function AuthReducer(state = initialState, action) {
@@ -16,6 +17,7 @@ function AuthReducer(state = initialState, action) {
       return {
         ...state,
         token: action.token,
+        isLogIn: action.isLogIn
       };
       case "GET_CLIENT":
       return {

@@ -48,14 +48,14 @@ class Login extends Component {
         response.text().then(result =>{
           const str = JSON.stringify(result).substring(14)
           const newStr = str.substring(0, str.length - 4)
-          const action = {type:"GET_TOKEN", token:newStr}
+          const action = {type:"GET_TOKEN", token:newStr, isLogIn:true}
           this.props.dispatch(action)
           window.location= '/'
         })
 
       }
       else{
-        const action = {type:"GET_TOKEN", token:''}
+        const action = {type:"GET_TOKEN", token:'', isLogIn:false }
           this.props.dispatch(action)
       }
     })

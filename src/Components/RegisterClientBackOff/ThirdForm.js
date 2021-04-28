@@ -36,6 +36,8 @@ class ThirdForm extends React.Component {
         <Form.Item label="Offre">
           <Select   >
             <Select.Option value="starter">Starter</Select.Option>
+            <Select.Option value="marketGrowth">marketGrowth</Select.Option>
+            
             {/*<Select.Option value={this.props.stepThreeData.offre}>Market Growth</Select.Option>
             <Select.Option value={this.props.stepThreeData.offre}>pioneer</Select.Option>
       <Select.Option value={this.props.stepThreeData.offre}>Gold</Select.Option>*/}

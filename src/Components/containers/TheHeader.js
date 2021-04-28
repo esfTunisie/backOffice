@@ -23,7 +23,21 @@ class TheHeader extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      client:{}
+    };
+  }
+
+  componentDidMount(){
+    this.getClients()
+  }
+
+  getClients=  ()=>{
+     fetch(apiURL+"/getClients")
+     .then(response => response.json()).then(data => {
+    const action = {type:"GET_CLIENT", value:data}
+     this.props.dispatch(action)});
+        
   }
   
  handleClick = async (id)=>{
@@ -105,7 +119,7 @@ render(){
       <Tabs>
       
       <TabList>
-      {this.props.auth.client && this.props.auth.client.map((el)=>(
+      {this.props.auth && this.props.auth.client.map((el)=>(
        
          <Tab  onClick={()=>this.handleClick(el.id)}>{el.raison_sociale}</Tab>
          )
