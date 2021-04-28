@@ -244,11 +244,20 @@ class StepForms extends React.Component {
 
     handleClickDoneForm =  (evt)=>{
       evt.preventDefault();
+      const stepTwo = this.props.auth.steps2
+      const stepThree = this.props.auth.step3
+      console.log(stepTwo.raisonsociale);
+      let formdata = new FormData()
 
-    const stepTwo = this.props.auth.steps2
-    const stepThree = this.props.auth.steps3
-    const stepfinal = {...stepTwo, ...stepThree}
-    
+        formdata.append("raison_sociale",stepTwo.raisonsociale)
+        formdata.append("adresse",stepTwo.adresse)
+        formdata.append("cat_produits",stepTwo.produits)
+        formdata.append("facebook",stepTwo.facebook)
+        formdata.append("instagram",stepTwo.instagram)
+        formdata.append("site_web",stepTwo.siteweb)
+        formdata.append("offre",stepThree.offre)
+        formdata.append("shop",stepThree.shop)
+      
     
  
        
@@ -256,7 +265,7 @@ class StepForms extends React.Component {
           'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTg5MDMyNDMsImV4cCI6MTYxODkwNjg0Mywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.n1tmNi5CB59np6Fo2gSmkeLXzpLrd_ukpVRRdhMIgWX-A2MdDjqDg-ODwhyaeouM5LtOaAzuTRIpmYx-tI7ehBfTHjttVP8-zzgKBvpZRFbJaG5nOcRA-Qiu-Br74CiCYWjeoZXDo-P0eJhcY2EcSwRrI8lBnU4ImUPi0zGyHOJSzHTGSC_lCzrtnOMrREHLZSidlNKPz4FKpX61ofyuxz2N5gKAOrd8nuevVGtyoSbphdPyUubEUvquhnQevkzxIPlWq76lF1t8qXfjtQx-PYtGhcdCQPZ61bqaE2YAZaULDiK0HUeBzf4Oz4Ca94HjPwmWJNHcSJ-6cb1Oa4QWaw'
         },
         method:'POST',
-        body: JSON.stringify(stepfinal)
+        body: formdata
       
       }).then(res=>res.json())
       .catch(error => console.error('Err',error))
@@ -267,7 +276,7 @@ class StepForms extends React.Component {
     
     render(){
       const {Step} = Steps
-      console.log("stepOne:",this.state.stepOneData);
+   
       const steps = [
         {
           title: "Inscription",
