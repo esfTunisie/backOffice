@@ -8,8 +8,7 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
-        props.auth?
-        <Component {...props && props.auth.token } />: window.location='/login'
+                <Component {...props} />
     }
   />
 );
@@ -17,9 +16,6 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => (
 PrivateRoute.propTypes = {
   auth: PropTypes.object.isRequired,
 };
-const mapStateToProps = (state, ownProps) => ({
-  auth: state.auth
-})
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -29,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect (mapStateToProps, mapDispatchToProps) (PrivateRoute);
+export default PrivateRoute;
