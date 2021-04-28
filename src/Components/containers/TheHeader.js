@@ -118,13 +118,13 @@ render(){
 <CSubheader>
       <Tabs>
       
-      <TabList>
-      {this.props.auth && this.props.auth.client.map((el)=>(
+     {/*<TabList>
+     {this.props.auth && this.props.auth.client.map((el)=>(
        
          <Tab  onClick={()=>this.handleClick(el.id)}>{el.raison_sociale}</Tab>
          )
-      )}
-      </TabList>
+       )}
+     </TabList>*/}
         
       
     </Tabs>

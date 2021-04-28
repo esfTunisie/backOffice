@@ -12,14 +12,15 @@ class StepForms extends React.Component {
     super(props);
     this.state = {
       current:0,
-      stepOneData:{name:'',email:'',password:'',password2:'',validation:{error:[true,true,true,true],errorMsg:
+      stepOneData:{first_name:'',last_name:"",email:'',password:'',password2:'',validation:{error:[true,true,true,true],errorMsg:
         ['merci de remplir votre nom',
+        'merci de remplir votre prénom',
         'merci de remplir votre email',
         'merci de remplir votre mot de passe',
         'merci de confirmer votre mot de passe'
 
       ]}},
-      stepOneError:[false,false,false,false],
+      stepOneError:[false,false,false,false,false],
       stepOneErrorMsg:['','','',''],
       stepTwoData:{raisonsociale:'',adresse:'',produits:'',facebook:'',instagram:'',siteweb:'',validation:{error:[true,true,true],errorMsg:
         ['merci de remplir le raison sociale',
@@ -43,11 +44,21 @@ class StepForms extends React.Component {
       
       let aux ={...this.state.stepOneData}
       aux[key]=value
-      if(key=="name"){
+      if(key=="first_name"){
         
         if(value.trim()===''){
           aux.validation.error[index]=true
           aux.validation.errorMsg[index]='merci de remplir votre nom'
+        }else{
+          aux.validation.error[index]=false
+          aux.validation.errorMsg[index]=''
+        }
+      }
+      if(key=="last_name"){
+        
+        if(value.trim()===''){
+          aux.validation.error[index]=true
+          aux.validation.errorMsg[index]='merci de remplir votre prénom'
         }else{
           aux.validation.error[index]=false
           aux.validation.errorMsg[index]=''
@@ -221,29 +232,59 @@ class StepForms extends React.Component {
       this.setState({current: this.state.current-1})
     };
 
-    handleRegisterForm = (evt)=>{
-      evt.preventDefault();
+    handleRegisterForm = ()=>{
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
       const stepOne = this.props.auth.steps1
-      console.log(stepOne.name);
-   
-
-
       let formdata =new FormData()
-      formdata.append('name',stepOne.name)
+      formdata.append('first_name',stepOne.first_name)
+      formdata.append('last_name',stepOne.last_name)
       formdata.append('email',stepOne.email)
       formdata.append('password',stepOne.password)
-      formdata.append('password2',stepOne.password2)
-      
-      fetch(apiURL+'/register',{method:'POST',
-      body:formdata
-       
-      }).then(res=>res.json())
-      .catch(error => console.error('Err',error))
-      .then(response => console.log('Succ',response))
+     
+      const requestOptions = {
+        method: 'POST',
+        // headers: myHeaders,
+        body: formdata
+      };
+      fetch(apiURL+'/register',requestOptions)
+      .then(response => {
+        if(response.status == 200)
+        {
+        console.log("res",response);
+          response.text().then(result =>{
+            
+          })
+        }
+      })
     }
+    
 
-    handleClickDoneForm =  (evt)=>{
-      evt.preventDefault();
+   /* const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  const requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: JSON.stringify({
+      "username": this.state.username,
+      "password": this.state.password
+    }),
+  };
+  
+  fetch(apiURL+"/api/login_check", requestOptions)
+    .then(response => {
+      if(response.status == 200){
+        response.text().then(result =>{
+          const str = JSON.stringify(result).substring(14)
+          const newStr = str.substring(0, str.length - 4)
+          const action = {type:"GET_TOKEN", token:newStr, isLogIn:true}
+          this.props.dispatch(action)
+          window.location= '/'
+        })
+*/
+
+    handleClickDoneForm =  ()=>{
+      
       const stepTwo = this.props.auth.steps2
       const stepThree = this.props.auth.step3
       console.log(stepTwo.raisonsociale);
@@ -262,7 +303,7 @@ class StepForms extends React.Component {
  
        
        fetch(apiURL+'/api/magasin',{headers:{
-          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTg5MDMyNDMsImV4cCI6MTYxODkwNjg0Mywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiZmFyb3VrYnIwNTBAZ21haWwuY29tIn0.n1tmNi5CB59np6Fo2gSmkeLXzpLrd_ukpVRRdhMIgWX-A2MdDjqDg-ODwhyaeouM5LtOaAzuTRIpmYx-tI7ehBfTHjttVP8-zzgKBvpZRFbJaG5nOcRA-Qiu-Br74CiCYWjeoZXDo-P0eJhcY2EcSwRrI8lBnU4ImUPi0zGyHOJSzHTGSC_lCzrtnOMrREHLZSidlNKPz4FKpX61ofyuxz2N5gKAOrd8nuevVGtyoSbphdPyUubEUvquhnQevkzxIPlWq76lF1t8qXfjtQx-PYtGhcdCQPZ61bqaE2YAZaULDiK0HUeBzf4Oz4Ca94HjPwmWJNHcSJ-6cb1Oa4QWaw'
+          'Authorization': "Bearer"+this.props.auth.token 
         },
         method:'POST',
         body: formdata
@@ -329,7 +370,7 @@ class StepForms extends React.Component {
           {this.state.current === 2 && (
             <Button
               type="primary"
-              onClick={this.handleClickDoneForm,this.handleRegisterForm}
+              onClick={this.handleRegisterForm}
             >
               Done
             </Button>
