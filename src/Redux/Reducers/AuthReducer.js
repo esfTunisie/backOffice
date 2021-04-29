@@ -8,7 +8,9 @@ const initialState = {
   steps2:{},
   steps3:{},
   product:null,
-  isLogIn:false
+  isLogIn:false,
+  offre:null,
+  shops:null
 };
 
 function AuthReducer(state = initialState, action) {
@@ -58,6 +60,16 @@ function AuthReducer(state = initialState, action) {
             return{
               ...state,
               steps3:action.value
+            };
+            case "OFFRE":
+            return{
+              ...state,
+              offre:action.value
+            };
+            case "SHOPS":
+            return{
+              ...state,
+              shops:action.value
             };
     case "LOGOUT":
       return {

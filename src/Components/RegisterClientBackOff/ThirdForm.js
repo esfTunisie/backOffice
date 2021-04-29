@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Form,
   Select,
 } from 'antd';
+import { connect } from 'react-redux';
 
 
 
@@ -12,12 +13,13 @@ class ThirdForm extends React.Component {
     super(props);
     this.state = {
       componentSize: 'default',
-      provinceData : ['Zhejiang', 'Jiangsu']
+      offreData : ['starter', 'market growth','pionner','gold']
       
              };
   }
-  handleProvinceChange(e){
-    console.log(e);
+  handleOffreChange(e){
+    const action ={type:"OFFRE",value:e,}
+    this.props.dispatch(action)
   }
 
  render(){
@@ -38,9 +40,9 @@ class ThirdForm extends React.Component {
         className="ant-form-pers"
       >
         <Form.Item label="Offre">
-        <Select defaultValue={this.state.provinceData[0]} style={{ width: 120 }} onChange={(e)=>this.handleProvinceChange(e)}>
-        {this.state.provinceData.map(province => (
-          <Option key={province}>{province}</Option>
+        <Select defaultValue={this.state.offreData[0]} style={{ width: 120 }} onChange={(e)=>this.handleOffreChange(e)}>
+        {this.state.offreData.map(offre => (
+          <Option key={offre}>{offre}</Option>
         ))}
       </Select>
 
@@ -68,4 +70,18 @@ class ThirdForm extends React.Component {
   
 };
 
-export default ThirdForm
+
+
+const mapStateToProps = (state, ownProps) => ({
+  auth: state.auth
+})
+
+
+const mapDispatchToProps = (dispatch) => {
+return {
+dispatch: (action) => {
+dispatch(action);
+},
+};
+};
+export default connect (mapStateToProps, mapDispatchToProps)(ThirdForm)

@@ -354,12 +354,7 @@ class StepForms extends React.Component {
           /> : null
         }
         {
-          this.state.current === 2 ? <ThirdForm
-          onChangeStepThreeData={this.onChangeStepThreeData}
-          stepThreeData={this.state.stepThreeData}
-          stepThreeError={this.state.stepThreeError}
-          stepThreeErrorMsg={this.state.stepThreeErrorMsg}
-          /> : null
+          this.state.current === 2 ? <ThirdForm/> : null
         }
         <div className="steps-action">
           {(this.state.current ===0 ||this.state.current ===1) && (
