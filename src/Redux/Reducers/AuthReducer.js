@@ -1,3 +1,5 @@
+import ActionButton from "antd/lib/modal/ActionButton";
+
 const initialState = {
   token: null,
   client: null,
@@ -19,7 +21,10 @@ function AuthReducer(state = initialState, action) {
       return {
         ...state,
         token: action.token,
-        isLogIn: action.isLogIn
+        isLogIn: action.isLogIn,
+        username: action.username,
+        password: action.password
+
       };
       case "GET_CLIENT":
       return {
