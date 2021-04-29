@@ -14,10 +14,9 @@ import CIcon from '@coreui/icons-react'
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs'
 import { Component } from 'react'
 import { apiURL } from '../../Config/Config'
+import TheHeaderDropdown from './TheHeaderDropdown'
 
 // routes config
-
-
 
 class TheHeader extends Component {
 
@@ -28,12 +27,12 @@ class TheHeader extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount=()=>{
     this.getClients()
   }
 
-  getClients=  ()=>{
-     fetch(apiURL+"/getClients")
+  getClients= async ()=>{
+    await fetch(apiURL+"/getClients")
      .then(response => response.json()).then(data => {
     const action = {type:"GET_CLIENT", value:data}
      this.props.dispatch(action)});
@@ -85,7 +84,7 @@ class TheHeader extends Component {
     this.props.dispatch(action)
   }
 render(){
-  console.log('eesaiiiiiiiiiiiiiiii', this.state);
+  
   return (
     <CHeader withSubheader>
       <CToggler
@@ -114,19 +113,17 @@ render(){
           
         </CHeaderNavItem>
       </CHeaderNav>
-
+      <CHeaderNav className="px-3">
+        <TheHeaderDropdown/>
+      </CHeaderNav>
 <CSubheader>
       <Tabs>
-      
       <TabList>
-      {this.props.auth && this.props.auth.client.map((el)=>(
-       
+      {this.props.auth.client && this.props.auth.client.map((el)=>(
          <Tab  onClick={()=>this.handleClick(el.id)}>{el.raison_sociale}</Tab>
          )
       )}
-      </TabList>
-        
-      
+      </TabList> 
     </Tabs>
     </CSubheader>
     </CHeader>

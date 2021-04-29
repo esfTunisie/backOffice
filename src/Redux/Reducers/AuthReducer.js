@@ -61,7 +61,16 @@ function AuthReducer(state = initialState, action) {
             };
     case "LOGOUT":
       return {
-        token: null,
+        token: action.token,
+        client: action.client,
+        new_command:action.new_command,
+        current_command:action.current_command,
+        canceled_command:action.canceled_command,
+        steps1:action.steps1,
+        steps2:action.steps2,
+        steps3:action.steps3,
+        product:action.product,
+        isLogIn:action.isLogIn
       };
     default:
       return state;
