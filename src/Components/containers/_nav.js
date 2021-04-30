@@ -10,8 +10,6 @@ import CIcon from '@coreui/icons-react'
     icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
 
   },
-
-  
   {
     _tag: 'CSidebarNavDropdown',
     name: 'Commande',
@@ -62,6 +60,18 @@ import CIcon from '@coreui/icons-react'
     to: '/form_prestashop',
     icon: <CIcon name="cilNotes" customClasses="c-sidebar-nav-icon"/>,
   },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Settings',
+    to: '/settings',
+    icon: <CIcon name="cilNotes" customClasses="c-sidebar-nav-icon"/>,
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Droppex',
+    to: '/shipping',
+    icon: <CIcon name="cilNotes" customClasses="c-sidebar-nav-icon"/>,
+  }
  
 ]
 export default _nav

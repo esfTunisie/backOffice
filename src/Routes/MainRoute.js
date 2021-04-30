@@ -27,6 +27,7 @@ import CanceledCommandByRef from '../Components/CommandePrestashopApi/CanceledCo
 
 import Login from '../Components/Login';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import FormShipping from '../Components/FormShipping';
 
 class MainRoute extends Component{
 
@@ -62,6 +63,7 @@ class MainRoute extends Component{
            <PrivateRoute path="/product_list" component={ProductList}   />
            <PrivateRoute path="/message" component={StepsForms}  />
            <PrivateRoute path="/settings" component={Settings}   />
+           <PrivateRoute path="/shipping" component={FormShipping}   />
            <PrivateRoute path="/upgrade" component={UpgradeOffre}   />
            <PrivateRoute path="/recordNewCommad/:clientId" component={NewCommandeById}  />
            <PrivateRoute path="/recordCurrentCommand/:clientRef" component={CurrentCommandeByRef}/>
