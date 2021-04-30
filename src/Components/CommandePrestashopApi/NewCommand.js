@@ -3,6 +3,7 @@ import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 
 
@@ -12,8 +13,6 @@ class NewCommand extends React.Component {
   state = {
     searchText: '',
     searchedColumn: '',
-    
-    
   };
 
  
@@ -97,6 +96,7 @@ class NewCommand extends React.Component {
     this.setState({ searchText: '' });
   };
 
+
   render() {
 
     const columns = [
@@ -106,6 +106,7 @@ class NewCommand extends React.Component {
           key: 'firstName',
           width: '20%',
           ...this.getColumnSearchProps('firstName'),
+          
         },
         {
             title: 'Prénom',
@@ -155,7 +156,19 @@ class NewCommand extends React.Component {
             key: 'date_update',
             width: '30%',
             ...this.getColumnSearchProps('date_update'),
+            
           },
+          {
+            title: 'Action',
+            width: '30%',
+            render: (text, record) => (
+              <Space size="middle">
+                <Link to={`/recordNewCommad/clientId=${record.id}`} >consulter </Link>
+              </Space>)
+          },
+
+
+          
 
       ];
     return <Table columns={columns} dataSource={this.props.auth.new_command} style={{overflow:"scroll", width:"100%"}} />;

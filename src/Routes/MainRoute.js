@@ -8,7 +8,6 @@ import {
   TheFooter,
   TheHeader
 } from '../Components/containers/index'
-
 import { apiURL } from '../Config/Config';
 import { connect } from 'react-redux';
 import NewCommand from '../Components/CommandePrestashopApi/NewCommand';
@@ -22,6 +21,13 @@ import CanceledCommand from '../Components/CommandePrestashopApi/CanceledCommand
 import Settings from '../Components/Settings';
 import UpgradeOffre from '../Components/UpgradeOffre';
 import ProductList from '../Components/ProductList';
+import NewCommandeById from '../Components/CommandePrestashopApi/NewCommandeById';
+import CurrentCommandeByRef from '../Components/CommandePrestashopApi/CurrentCommandeByRef';
+import CanceledCommandByRef from '../Components/CommandePrestashopApi/CanceledCommandByRef';
+
+import Login from '../Components/Login';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import FormShipping from '../Components/FormShipping';
 
 class MainRoute extends Component{
 
@@ -32,31 +38,15 @@ class MainRoute extends Component{
     };
   }
   componentDidMount(){
-    this.getClients();
-}
-
-getClients= async ()=>{
-const Dada = await fetch('/getClients',{
-  headers:{
-    'Access-Control-Allow-Origin': '*'
-  }
   
-});
-const DataJson = await Dada.json();
-
-  this.setState({client:DataJson});
-
-
-console.log(DataJson);
-//.then(response => response.json()).then(data => this.setState({ client:data }));
- const action = {type:"GET_CLIENT", value:this.state.client}
-  this.props.dispatch(action)
 }
+
+
   render(){
     return (
       <Router>
         <Switch>
-        <div className="c-app c-default-layout">
+        {this.props.auth && this.props.auth.token ?<div className="c-app c-default-layout">
         <Route>
         <TheSidebar/>
         </Route>
@@ -65,23 +55,25 @@ console.log(DataJson);
           <TheHeader/>
           </Route>
           <div className="c-body">
-           {/* <TapComponent />*/} 
-           <Route  path="/form_prestashop" component={ApiPrestaForm}/>
-           <Route path="/nouveaux_commande" component={NewCommand}  /> 
-           <Route path="/panier_abondonnées" component={CommandAbondonnée}  /> 
-           <Route path="/commandes_annulées" component={CanceledCommand}  /> 
-           <Route path="/commandes_en_cours" component={CurrentCommand}  /> 
-           <Route path="/product_list" component={ProductList}  /> 
-           <Route path="/message" component={StepsForms} />
-           <Route path="/settings" component={Settings} />
-           <Route path="/upgrade" component={UpgradeOffre} />
-           
+           <PrivateRoute path="/form_prestashop" component={ApiPrestaForm}  />
+           <PrivateRoute path="/nouveaux_commande" component={NewCommand}  /> 
+           <PrivateRoute path="/panier_abondonnées" component={CommandAbondonnée}  /> 
+           <PrivateRoute path="/commandes_annulées" component={CanceledCommand}   /> 
+           <PrivateRoute path="/commandes_en_cours" component={CurrentCommand}   /> 
+           <PrivateRoute path="/product_list" component={ProductList}   />
+           <PrivateRoute path="/message" component={StepsForms}  />
+           <PrivateRoute path="/settings" component={Settings}   />
+           <PrivateRoute path="/shipping" component={FormShipping}   />
+           <PrivateRoute path="/upgrade" component={UpgradeOffre}   />
+           <PrivateRoute path="/recordNewCommad/:clientId" component={NewCommandeById}  />
+           <PrivateRoute path="/recordCurrentCommand/:clientRef" component={CurrentCommandeByRef}/>
+           <PrivateRoute path="/recordCanceledCommand/:clientRef" component={CanceledCommandByRef} />
           </div>
           <Route>
           <TheFooter/>
           </Route>
         </div>
-      </div>
+      </div> : <Route path="/" component={Login} exact/>}
         </Switch>
       </Router>
     );

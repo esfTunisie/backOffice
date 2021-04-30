@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Form,
   Select,
 } from 'antd';
+import { connect } from 'react-redux';
 
 
 
@@ -12,12 +13,24 @@ class ThirdForm extends React.Component {
     super(props);
     this.state = {
       componentSize: 'default',
+      offreData : ['starter', 'market growth','pionner','gold'],
+      shopsData: ["shop one",'shop two','shop three', 'shop four']
       
              };
   }
+  handleOffreChange(e){
+    const action ={type:"OFFRE",value:e,}
+    this.props.dispatch(action)
+  }
+
+  handleShopsChange(e){
+    const action ={type:"SHOPS",value:e,}
+    this.props.dispatch(action)
+  }
+
 
  render(){
-
+  const { Option } = Select;
   return (
     <>
       <Form
@@ -34,23 +47,26 @@ class ThirdForm extends React.Component {
         className="ant-form-pers"
       >
         <Form.Item label="Offre">
-          <Select   >
-            <Select.Option value="starter">Starter</Select.Option>
-            {/*<Select.Option value={this.props.stepThreeData.offre}>Market Growth</Select.Option>
-            <Select.Option value={this.props.stepThreeData.offre}>pioneer</Select.Option>
-      <Select.Option value={this.props.stepThreeData.offre}>Gold</Select.Option>*/}
-          </Select>
+        <Select defaultValue={this.state.offreData[0]} style={{ width: 600 }} onChange={(e)=>this.handleOffreChange(e)}>
+        {this.state.offreData.map(offre => (
+          <Option key={offre}>{offre}</Option>
+        ))}
+      </Select>
+
+ 
         </Form.Item>
-        {/*this.props.stepThreeError[0]&&<div style={{color:'red'}}>{this.props.stepThreeErrorMsg[0]}</div>*/}
-        <Form.Item label="magasins">
-          <Select >
-            <Select.Option value="shop one">Shop 1</Select.Option>
-{ /*           <Select.Option value="shop2">Shop 2</Select.Option>
-            <Select.Option value="shop3">Shop 3</Select.Option>
-    <Select.Option value="shop4">Shop 4</Select.Option>*/}
-          </Select>
+
+        <Form.Item label="Templates">
+        <Select defaultValue={this.state.shopsData[0]} style={{ width: 600 }} onChange={(e)=>this.handleShopsChange(e)}>
+        {this.state.shopsData.map(shop => (
+          <Option key={shop}>{shop}</Option>
+        ))}
+      </Select>
+        
         </Form.Item>
-        { /**this.props.stepThreeError[1]&&<div style={{color:'red'}}>{this.props.stepThreeErrorMsg[1]}</div> */ }
+      
+       
+
       </Form>
     </>
   );
@@ -58,4 +74,18 @@ class ThirdForm extends React.Component {
   
 };
 
-export default ThirdForm
+
+
+const mapStateToProps = (state, ownProps) => ({
+  auth: state.auth
+})
+
+
+const mapDispatchToProps = (dispatch) => {
+return {
+dispatch: (action) => {
+dispatch(action);
+},
+};
+};
+export default connect (mapStateToProps, mapDispatchToProps)(ThirdForm)

@@ -3,6 +3,7 @@ import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 
 class CurrentCommand extends React.Component{
@@ -153,6 +154,14 @@ class CurrentCommand extends React.Component{
                 key: 'date_update',
                 width: '30%',
                 ...this.getColumnSearchProps('date_update'),
+              },
+              {
+                title: 'Action',
+                width: '30%',
+                render: (text, record) => (
+                  <Space size="middle">
+                    <Link to={`/recordCurrentCommand/clientRef=${record.référence}`} >consulter </Link>
+                  </Space>)
               },
     
           ];
