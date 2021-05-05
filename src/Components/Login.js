@@ -27,7 +27,7 @@ class Login extends Component {
   };
 }
 
-
+ 
 
  handleSubmit=()=>{
 
@@ -50,6 +50,7 @@ class Login extends Component {
           const newStr = str.substring(0, str.length - 4)
           const action = {type:"GET_TOKEN", token:newStr, isLogIn:true,username:this.state.username,password:this.state.password}
           this.props.dispatch(action)
+          
           window.location= '/'
         })
 
@@ -102,9 +103,7 @@ class Login extends Component {
                             </CRow>
                           </CForm>
                         </CCardBody>
-                      </CCard>
-                     
-                   
+                      </CCard>  
                   </CCol>
                 </CRow>
               </CContainer>

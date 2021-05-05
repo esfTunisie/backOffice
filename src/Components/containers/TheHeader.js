@@ -27,26 +27,26 @@ class TheHeader extends Component {
     };
   }
 
-  componentDidMount=()=>{
-    this.getClients()
-  }
 
-  getClients= async ()=>{
-    await fetch(apiURL+"/getClients")
+
+  componentDidMount=()=>{
+    fetch(apiURL+"/api/getAllMagasin", {headers: {
+      'Authorization': 'Bearer '+this.props.auth.token}})
      .then(response => response.json()).then(data => {
-       console.log();
+      
     const action = {type:"GET_CLIENT", value:data}
      this.props.dispatch(action)});
-        
   }
+
+
   
  handleClick = async (id)=>{
 
    await fetch(apiURL+'/api/getNewCommande/'+id ,{headers: {
    
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0NDA0MjcsImV4cCI6MTYyMzA0MDQyNywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtZWQuYmVubWFraGxvdWZAeWFob28uZnIifQ.fGr-Pb0tOEmeCK5c95HrD8HaOUuhOuyr8fjOgbLEE90wjAa4TR7Llpbt7Ic8cZHepBKOkIY67xYCc2nOPsrBFGVcDEnHtBEFhiDhNr_monews1qpuohEUJlmfq0_OJ98ry3PLKpdTFaUeeo1VFuJGfjWfUDzP97Tu8ff1a6hYsnju9KASo_PDQ5OuHrPCwkOvEEqWvGVYijbi9Gi-hK5SzS_lP-M2ozXs7kjKHRzw3mhTqYE_5m1W_sRBbnAzgOn0lDzJqRareRGrN0h6DhFbHCAcY1QIsOby2pNnqVt-eASNeMF44-DeyIUlXZ3jBBY4S8bZeWuh1EToWkXHjw17A'
+    'Authorization': 'Bearer '+this.props.auth.token
   }})
-    .then(response => response.json()).then(data => this.setState({ newCommand:data }));
+    .then(response => response.json()).then(data => this.setState({ newCommand:data }) );
     const action = {type:"GET_NEW_COMMAND", value:this.state.newCommand}
       this.props.dispatch(action)
       this.handleClickCurrent(id);
@@ -56,7 +56,7 @@ class TheHeader extends Component {
   handleClickCurrent = async (id)=>{
     console.log('test',id);
    await fetch(apiURL+'/api/getCurrentCommande/'+id ,{headers: {
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0NDA0MjcsImV4cCI6MTYyMzA0MDQyNywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtZWQuYmVubWFraGxvdWZAeWFob28uZnIifQ.fGr-Pb0tOEmeCK5c95HrD8HaOUuhOuyr8fjOgbLEE90wjAa4TR7Llpbt7Ic8cZHepBKOkIY67xYCc2nOPsrBFGVcDEnHtBEFhiDhNr_monews1qpuohEUJlmfq0_OJ98ry3PLKpdTFaUeeo1VFuJGfjWfUDzP97Tu8ff1a6hYsnju9KASo_PDQ5OuHrPCwkOvEEqWvGVYijbi9Gi-hK5SzS_lP-M2ozXs7kjKHRzw3mhTqYE_5m1W_sRBbnAzgOn0lDzJqRareRGrN0h6DhFbHCAcY1QIsOby2pNnqVt-eASNeMF44-DeyIUlXZ3jBBY4S8bZeWuh1EToWkXHjw17A'
+    'Authorization': 'Bearer '+this.props.auth.token
     
   }})
     .then(response=> response.json()).then(data=>this.setState({currentCommand:data}));
@@ -67,7 +67,7 @@ class TheHeader extends Component {
   
     await fetch(apiURL+'/api/getCommandeAnnulee/'+id ,{headers: {
 
-      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0NDA0MjcsImV4cCI6MTYyMzA0MDQyNywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtZWQuYmVubWFraGxvdWZAeWFob28uZnIifQ.fGr-Pb0tOEmeCK5c95HrD8HaOUuhOuyr8fjOgbLEE90wjAa4TR7Llpbt7Ic8cZHepBKOkIY67xYCc2nOPsrBFGVcDEnHtBEFhiDhNr_monews1qpuohEUJlmfq0_OJ98ry3PLKpdTFaUeeo1VFuJGfjWfUDzP97Tu8ff1a6hYsnju9KASo_PDQ5OuHrPCwkOvEEqWvGVYijbi9Gi-hK5SzS_lP-M2ozXs7kjKHRzw3mhTqYE_5m1W_sRBbnAzgOn0lDzJqRareRGrN0h6DhFbHCAcY1QIsOby2pNnqVt-eASNeMF44-DeyIUlXZ3jBBY4S8bZeWuh1EToWkXHjw17A'
+      'Authorization': 'Bearer '+this.props.auth.token
   }})
     .then(response=> response.json()).then(data=>this.setState({canceledcCommand:data}));
     
@@ -78,7 +78,7 @@ class TheHeader extends Component {
   handleClickProduct = async (id)=>{
   
    await fetch('/api/getAllProduct/'+id ,{headers: {
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTk0NDA0MjcsImV4cCI6MTYyMzA0MDQyNywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtZWQuYmVubWFraGxvdWZAeWFob28uZnIifQ.fGr-Pb0tOEmeCK5c95HrD8HaOUuhOuyr8fjOgbLEE90wjAa4TR7Llpbt7Ic8cZHepBKOkIY67xYCc2nOPsrBFGVcDEnHtBEFhiDhNr_monews1qpuohEUJlmfq0_OJ98ry3PLKpdTFaUeeo1VFuJGfjWfUDzP97Tu8ff1a6hYsnju9KASo_PDQ5OuHrPCwkOvEEqWvGVYijbi9Gi-hK5SzS_lP-M2ozXs7kjKHRzw3mhTqYE_5m1W_sRBbnAzgOn0lDzJqRareRGrN0h6DhFbHCAcY1QIsOby2pNnqVt-eASNeMF44-DeyIUlXZ3jBBY4S8bZeWuh1EToWkXHjw17A'
+    'Authorization': 'Bearer '+this.props.auth.token
   }})
     .then(response=> response.json()).then(data=>this.setState({product:data}));
     const action = {type:"GET_PRODUCT", value:this.state.product}
