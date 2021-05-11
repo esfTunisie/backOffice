@@ -28,7 +28,6 @@ class TheHeader extends Component {
   }
 
 
-
   componentDidMount=()=>{
     fetch(apiURL+"/api/getAllMagasin", {headers: {
       'Authorization': 'Bearer '+this.props.auth.token}})

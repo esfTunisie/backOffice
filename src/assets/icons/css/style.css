@@ -89,7 +89,8 @@ margin-top: 0.5%;
     height: 40px;
     cursor: pointer;
     color: white;
+    background-color: black;
 }
 .react-tabs__tab--selected{
-    background-color: black !important;
+    background-color: #fa9e1a !important;
 }

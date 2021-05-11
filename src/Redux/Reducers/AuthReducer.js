@@ -23,7 +23,7 @@ function AuthReducer(state = initialState, action) {
         token: action.token,
         isLogIn: action.isLogIn,
         username: action.username,
-        password: action.password
+        
 
       };
       case "GET_CLIENT":
