@@ -94,3 +94,28 @@ margin-top: 0.5%;
 .react-tabs__tab--selected{
     background-color: #fa9e1a !important;
 }
+.titleModalShipping{
+    text-align: center !important;
+    margin-top: 20px !important;
+    font-size: 16px;
+    color: black;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+.modalShipping-btn-confirmer{
+    background-color: forestgreen;
+    color: white;
+    border-radius: 4px;
+    width: 120px;
+    height: 40px;
+    border: none;
+}
+.modalShipping-btn-cancel{
+    background-color:slategray;
+    color: white;
+    border-radius: 4px;
+    width: 120px;
+    height: 40px;
+    border: none;
+    float: right;
+}

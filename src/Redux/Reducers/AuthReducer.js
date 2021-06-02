@@ -12,7 +12,9 @@ const initialState = {
   product:null,
   isLogIn:false,
   offre:null,
-  shops:null
+  shops:null,
+  adress:null,
+  arrayAdress:{},
 };
 
 function AuthReducer(state = initialState, action) {
@@ -31,6 +33,7 @@ function AuthReducer(state = initialState, action) {
         ...state,
         client: action.value,
       };
+      
       case "GET_NEW_COMMAND":
         return{
           ...state,
@@ -46,11 +49,17 @@ function AuthReducer(state = initialState, action) {
             ...state,
             product:action.value,
           };
+          case "GET_ADRESS":
+      return {
+        ...state,
+        adress: action.value,
+      };
           case "GET_CANCELED_COMMAND":
             return{
               ...state,
               canceled_command:action.value,
             };
+        
         case "STEP_FORM_ONE":
           return{
             ...state,
@@ -76,6 +85,11 @@ function AuthReducer(state = initialState, action) {
               ...state,
               shops:action.value
             };
+            case "GET_ADRESS_ARRAY":
+              return{
+                ...state,
+                arrayAdress:action.value,
+              };
     case "LOGOUT":
       return {
         token: action.token,

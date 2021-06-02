@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 
 import {
  
@@ -48,6 +48,7 @@ class MainRoute extends Component{
     return (
       <Router>
         <Switch>
+          <Route path='/login' component={Login} />
         {this.props.auth && this.props.auth.token ?<div className="c-app c-default-layout">
         <Route>
         <TheSidebar/>
@@ -75,7 +76,7 @@ class MainRoute extends Component{
           <TheFooter/>
           </Route>
         </div>
-      </div> : <Route path="/" component={Login} exact/>}
+      </div> : <Redirect to='/login' />}
         </Switch>
       </Router>
     );

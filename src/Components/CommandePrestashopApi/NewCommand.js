@@ -163,7 +163,7 @@ class NewCommand extends React.Component {
             width: '30%',
             render: (text, record) => (
               <Space size="middle">
-                <Link to={`/recordNewCommad/clientId=${record.id}`} >consulter </Link>
+                <Link to={`/recordNewCommad/clientId=${record.id}`} onClick={console.log('record',record)} >consulter </Link>
               </Space>)
           },
 

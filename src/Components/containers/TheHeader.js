@@ -29,14 +29,18 @@ class TheHeader extends Component {
 
 
   componentDidMount=()=>{
-    fetch(apiURL+"/api/getAllMagasin", {headers: {
+    this.getClient()
+  }
+
+  getClient=async()=>{
+   await fetch(apiURL+"/api/getAllMagasin", {headers: {
       'Authorization': 'Bearer '+this.props.auth.token}})
      .then(response => response.json()).then(data => {
+       
       
     const action = {type:"GET_CLIENT", value:data}
      this.props.dispatch(action)});
   }
-
 
   
  handleClick = async (id)=>{
@@ -51,6 +55,7 @@ class TheHeader extends Component {
       this.handleClickCurrent(id);
       this.handleClickCanceledCommand(id);
       this.handleClickProduct(id);
+      this.handleClickAdress(id);
   }
   handleClickCurrent = async (id)=>{
     console.log('test',id);
@@ -83,8 +88,16 @@ class TheHeader extends Component {
     const action = {type:"GET_PRODUCT", value:this.state.product}
     this.props.dispatch(action)
   }
+  handleClickAdress = async (id)=>{
+    await fetch('/api/getAdressDelivery/'+id ,{headers: {
+      'Authorization': 'Bearer '+this.props.auth.token
+    }})
+      .then(response=> response.json()).then(data=>this.setState({adress:data}));
+      const action = {type:"GET_ADRESS", value:this.state.adress}
+      this.props.dispatch(action)
+  }
 render(){
-  
+  console.log("testCommand",this.state.newCommand);
   return (
     <CHeader withSubheader>
       <CToggler
