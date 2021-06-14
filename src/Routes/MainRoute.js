@@ -18,7 +18,7 @@ import ApiPrestaForm from '../Components/ApiPrestaShopForm/ApiPrestaForm';
 import Formtest from '../Components/Formtest';
 import StepsForms from '../Components/RegisterClientBackOff/StepsForms';
 import CanceledCommand from '../Components/CommandePrestashopApi/CanceledCommand';
-import Settings from '../Components/Settings';
+
 import UpgradeOffre from '../Components/UpgradeOffre';
 import ProductList from '../Components/ProductList';
 import NewCommandeById from '../Components/CommandePrestashopApi/NewCommandeById';
@@ -66,7 +66,7 @@ class MainRoute extends Component{
            <PrivateRoute path="/register" component={StepsForms}  />
            
            <PrivateRoute path="/shipping" component={FormShipping}   />
-           <PrivateRoute path="/account-information" component={Settings} />
+          
            <PrivateRoute path="/upgrade" component={UpgradeOffre}   />
            <PrivateRoute path="/recordNewCommad/:clientId" component={NewCommandeById}  />
            <PrivateRoute path="/recordCurrentCommand/:clientRef" component={CurrentCommandeByRef}/>
