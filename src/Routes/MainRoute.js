@@ -43,7 +43,6 @@ class MainRoute extends Component{
     
 }
 
-
   render(){
     return (
       <Router>

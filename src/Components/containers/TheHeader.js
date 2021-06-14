@@ -36,6 +36,7 @@ class TheHeader extends Component {
    await fetch(apiURL+"/api/getAllMagasin", {headers: {
       'Authorization': 'Bearer '+this.props.auth.token}})
      .then(response => response.json()).then(data => {
+       console.log("dataClient",data);
        
       
     const action = {type:"GET_CLIENT", value:data}

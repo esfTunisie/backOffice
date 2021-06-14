@@ -23,6 +23,7 @@ class Login extends Component {
     this.state = {
     username:"",
     password:"" ,
+    msgError:false,
   error:{}    
   };
 }
@@ -56,6 +57,7 @@ class Login extends Component {
 
       }
       else{
+        this.setState({msgError:true})
         const action = {type:"GET_TOKEN", token:'', isLogIn:false }
           this.props.dispatch(action)
       }
@@ -93,6 +95,11 @@ class Login extends Component {
                               </CInputGroupPrepend>
                               <CInput type="password" placeholder="Password" autoComplete="current-password" onChange={(e)=>this.setState({password:e.target.value})}/>
                             </CInputGroup>
+                            <CRow>
+                              <CCol xs="12">
+                                {this.state.msgError&& <span style={{color:"red"}}>Invalid credential</span>}
+                              </CCol>
+                            </CRow>
                             <CRow>
                               <CCol xs="6">
                                 <CButton color="primary" className="px-4" onClick={this.handleSubmit}>Login</CButton>

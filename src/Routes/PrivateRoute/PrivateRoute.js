@@ -10,10 +10,9 @@ const PrivateRoute = ({ component: Component, auth: auth, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      auth.token !== null ? 
+    
         <Component {...props} />
-       : <Route path="/" component={Login} exact/> 
-      
+       
     }
   />
 );
