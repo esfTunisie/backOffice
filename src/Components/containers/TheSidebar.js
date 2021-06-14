@@ -26,7 +26,7 @@ const TheSidebar = () => {
       onShowChange={(val) => dispatch({type: 'set', sidebarShow: val })}
     >
       <CSidebarBrand className="d-md-down-none" to="/">
-      <img width="20%" src="/assets/images/shifti-logo-icon.png" alt=""/>
+      <img width="20%" src="/assets/images/shifti-logo.png" alt=""/>
       </CSidebarBrand>
       <CSidebarNav>
 

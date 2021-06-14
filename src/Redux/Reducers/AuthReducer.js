@@ -51,6 +51,11 @@ function AuthReducer(state = initialState, action) {
               ...state,
               canceled_command:action.value,
             };
+            case "GET-PANIER-ABONDONNEE":
+              return{
+                ...state,
+                panier_abondonnee:action.value,
+              };
         case "STEP_FORM_ONE":
           return{
             ...state,

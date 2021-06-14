@@ -254,17 +254,7 @@ class StepForms extends React.Component {
         // headers: myHeaders,
         body: formdata
       };
-      fetch(apiURL+'/register',requestOptions)
-      .then(response => {
-        if(response.status == 200)
-        {
-        console.log("res",response);
-          response.json().then(result =>{
-            this.handleClickDoneForm();
-            console.log(result);
-          })
-        }
-      })
+     
      
     }
     
@@ -329,7 +319,7 @@ class StepForms extends React.Component {
       ];
     return(
       <div>
-      <Steps  size="small" current={this.state.current}>
+      <Steps size="small" current={this.state.current}>
       {steps.map((item) => (
         <Step key={item.title} title={item.title} />
       ))}

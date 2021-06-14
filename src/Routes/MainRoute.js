@@ -28,6 +28,7 @@ import CanceledCommandByRef from '../Components/CommandePrestashopApi/CanceledCo
 import Login from '../Components/Login';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import FormShipping from '../Components/FormShipping';
+import PanierAbondonnée from '../Components/CommandePrestashopApi/PanierAbondonnée';
 
 class MainRoute extends Component{
 
@@ -57,13 +58,15 @@ class MainRoute extends Component{
           <div className="c-body">
            <PrivateRoute path="/form_prestashop" component={ApiPrestaForm}  />
            <PrivateRoute path="/nouveaux_commande" component={NewCommand}  /> 
-           <PrivateRoute path="/panier_abondonnées" component={CommandAbondonnée}  /> 
+           <PrivateRoute path="/panier_abondonnées" component={PanierAbondonnée}  /> 
            <PrivateRoute path="/commandes_annulées" component={CanceledCommand}   /> 
            <PrivateRoute path="/commandes_en_cours" component={CurrentCommand}   /> 
+           
            <PrivateRoute path="/product_list" component={ProductList}   />
-           <PrivateRoute path="/message" component={StepsForms}  />
-           <PrivateRoute path="/settings" component={Settings}   />
+           <PrivateRoute path="/register" component={StepsForms}  />
+           
            <PrivateRoute path="/shipping" component={FormShipping}   />
+           <PrivateRoute path="/account-information" component={Settings} />
            <PrivateRoute path="/upgrade" component={UpgradeOffre}   />
            <PrivateRoute path="/recordNewCommad/:clientId" component={NewCommandeById}  />
            <PrivateRoute path="/recordCurrentCommand/:clientRef" component={CurrentCommandeByRef}/>

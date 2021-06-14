@@ -69,9 +69,11 @@ class TheHeaderDropdown extends Component {
         > 
          <strong>Settings</strong>
         </CDropdownItem>
+        <Link to="/account-information">
         <CDropdownItem>
-          <CIcon name="cil-user" className="mfe-2" />Profile
+        <CIcon name="cil-user" className="mfe-2" />Profile
         </CDropdownItem>
+        </Link>
         <CDropdownItem>
           <CIcon name="cil-settings" className="mfe-2" />
           Settings

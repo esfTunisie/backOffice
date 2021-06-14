@@ -60,12 +60,7 @@ import CIcon from '@coreui/icons-react'
     to: '/form_prestashop',
     icon: <CIcon name="cilNotes" customClasses="c-sidebar-nav-icon"/>,
   },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Settings',
-    to: '/settings',
-    icon: <CIcon name="cilNotes" customClasses="c-sidebar-nav-icon"/>,
-  },
+
   {
     _tag: 'CSidebarNavItem',
     name: 'Droppex',
