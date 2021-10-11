@@ -29,7 +29,7 @@ class TheHeader extends Component {
 
 
   componentDidMount=()=>{
-    this.getClient()
+    // this.getClient()
   }
 
   getClient=async()=>{

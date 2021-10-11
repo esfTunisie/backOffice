@@ -119,3 +119,13 @@ margin-top: 0.5%;
     border: none;
     float: right;
 }
+.button-voir-image{
+    background-color: cornflowerblue;
+    width: 25%;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+}

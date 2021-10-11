@@ -24,10 +24,12 @@ import ProductList from '../Components/ProductList';
 import NewCommandeById from '../Components/CommandePrestashopApi/NewCommandeById';
 import CurrentCommandeByRef from '../Components/CommandePrestashopApi/CurrentCommandeByRef';
 import CanceledCommandByRef from '../Components/CommandePrestashopApi/CanceledCommandByRef';
-
+import Dashboard from '../Components/Dashboard';
 import Login from '../Components/Login';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import FormShipping from '../Components/FormShipping';
+import UserInforamtion from '../Components/UserInforamtion';
+import ProduitClient from '../Components/containers/ProduitClient';
 
 class MainRoute extends Component{
 
@@ -70,6 +72,9 @@ class MainRoute extends Component{
            <PrivateRoute path="/recordNewCommad/:clientId" component={NewCommandeById}  />
            <PrivateRoute path="/recordCurrentCommand/:clientRef" component={CurrentCommandeByRef}/>
            <PrivateRoute path="/recordCanceledCommand/:clientRef" component={CanceledCommandByRef} />
+           <PrivateRoute path="/dashboard" component={Dashboard}  /> 
+           <PrivateRoute path="/userInfomration/:userId" component={UserInforamtion}  />
+           <PrivateRoute path="/produit/:userId" component={ProduitClient}  />
           </div>
           <Route>
           <TheFooter/>
