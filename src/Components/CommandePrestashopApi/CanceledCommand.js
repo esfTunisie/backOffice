@@ -1,0 +1,183 @@
+import { Table, Input, Button, Space } from 'antd';
+import Highlighter from 'react-highlight-words';
+import { SearchOutlined } from '@ant-design/icons';
+import { connect } from 'react-redux';
+import React from 'react'
+import { Link } from 'react-router-dom';
+
+class CanceledCommand extends React.Component{
+
+    
+    state = {
+        searchText: '',
+        searchedColumn: '',
+        
+        
+      };
+    
+     
+    
+    
+      getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+          <div style={{ padding: 8 }}>
+            <Input
+              ref={node => {
+                this.searchInput = node;
+              }}
+              placeholder={`Search ${dataIndex}`}
+              value={selectedKeys[0]}
+              onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+              onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              style={{ width: 188, marginBottom: 8, display: 'block' }}
+            />
+            <Space>
+              <Button
+                type="primary"
+                onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+                icon={<SearchOutlined />}
+                size="small"
+                style={{ width: 90 }}
+              >
+                Search
+              </Button>
+              <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+                Reset
+              </Button>
+              <Button
+                type="link"
+                size="small"
+                onClick={() => {
+                  confirm({ closeDropdown: false });
+                  this.setState({
+                    searchText: selectedKeys[0],
+                    searchedColumn: dataIndex,
+                  });
+                }}
+              >
+                Filter
+              </Button>
+            </Space>
+          </div>
+        ),
+        filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+        onFilter: (value, record) =>
+          record[dataIndex]
+            ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
+            : '',
+        onFilterDropdownVisibleChange: visible => {
+          if (visible) {
+            setTimeout(() => this.searchInput.select(), 100);
+          }
+        },
+        render: text =>
+          this.state.searchedColumn === dataIndex ? (
+            <Highlighter
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[this.state.searchText]}
+              autoEscape
+              textToHighlight={text ? text.toString() : ''}
+            />
+          ) : (
+            text
+          ),
+      });
+    
+      handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        this.setState({
+          searchText: selectedKeys[0],
+          searchedColumn: dataIndex,
+        });
+      };
+    
+      handleReset = clearFilters => {
+        clearFilters();
+        this.setState({ searchText: '' });
+      };
+    
+      render() {
+    
+        const columns = [
+            {
+              title: 'Nom',
+              dataIndex: 'firstName',
+              key: 'firstName',
+              width: '20%',
+              ...this.getColumnSearchProps('firstName'),
+            },
+            {
+                title: 'Prénom',
+                dataIndex: 'lastName',
+                key: 'lastName',
+                width: '20%',
+                ...this.getColumnSearchProps('lastName'),
+              },
+              {
+                title: 'Email',
+                dataIndex: 'email',
+                key: 'email',
+                width: '25%',
+                ...this.getColumnSearchProps('email'),
+              },
+              {
+                title: 'Méthode de paiment',
+                dataIndex: 'payment',
+                key: 'payment',
+                width: '25%',
+                ...this.getColumnSearchProps('payment'),
+              },
+              {
+                title: 'Montant',
+                dataIndex: 'montant',
+                key: 'montant',
+                width: '30%',
+                ...this.getColumnSearchProps('montant'),
+              },
+              {
+                title: 'Référence',
+                dataIndex: 'référence',
+                key: 'référence',
+                width: '20%',
+                ...this.getColumnSearchProps('référence'),
+              },
+              {
+                title: 'Date du commande',
+                dataIndex: 'date_add',
+                key: 'date_add',
+                width: '30%',
+                ...this.getColumnSearchProps('date_add'),
+              },
+              {
+                title: 'date de modification',
+                dataIndex: 'date_update',
+                key: 'date_update',
+                width: '30%',
+                ...this.getColumnSearchProps('date_update'),
+              },
+              {
+                title: 'Action',
+                width: '30%',
+                render: (text, record) => (
+                  <Space size="middle">
+                    <Link to={`/recordCanceledCommand/clientRef=${record.référence}`} >consulter </Link>
+                  </Space>)
+              },
+    
+          ];
+        return <Table columns={columns} dataSource={this.props.auth.canceled_command} style={{overflow:"scroll", width:"100%"}} />;
+      }
+    }
+    const mapStateToProps = (state, ownProps) => ({
+        auth: state.auth
+      })
+      
+     
+    const mapDispatchToProps = (dispatch) => {
+    return {
+    dispatch: (action) => {
+      dispatch(action);
+    },
+    };
+    };
+    export default connect (mapStateToProps, mapDispatchToProps)(CanceledCommand)

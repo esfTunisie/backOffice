@@ -1,0 +1,131 @@
+.ant-table-tbody{
+    background-color: white !important;
+}
+.c-sidebar .c-sidebar-brand{
+    background-color: white;
+}
+
+.react-tabs__tab-list {
+    border-bottom: 2px solid #27558e !important;
+    display: flex;
+}
+
+.react-tabs__tab{
+    padding: 6px 81px  !important;
+    font-size: medium;
+    margin-top: 7px;
+    border-radius: 5px 5px 0 0;
+    list-style: none;
+}
+.c-header{
+    border-bottom: 1px solid #ebedef !important;
+}
+.c-subheader{
+    background: #ebedef;
+}
+.steps-content {
+    min-height: 200px;
+    margin-top: 16px;
+    
+    text-align: center;
+    border-radius: 2px;
+    margin-left: 20%;
+  }
+  
+  .steps-action {
+    margin-top: 24px;
+  }
+  [data-theme="dark"] .steps-content {
+    margin-top: 16px;
+    border: 1px dashed #303030;
+    background-color: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.65);
+    padding-top: 80px;
+  }
+
+
+#text-area {
+    font-family: sans-serif, monospace;
+    font-size: 20px;
+    min-height: 70px;
+    min-width: 500px;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #c1c1c1;
+}
+
+.ant-form{
+    padding-right: 35%;
+    padding-top: 6%;
+}
+.steps-action{
+    margin-left: 50%;
+}
+.ant-form-pers{
+    padding-right: 0  !important;
+}
+
+.ant-steps{
+    width:65%;
+    margin-left: 20%;
+}
+.second-form-align{
+    padding-left:15px ;
+}
+
+.upgrade_section{
+    display:flex;
+}
+.button_upgrade_style{
+width: 14%;
+height: 67%;
+margin-left: 3%;
+margin-top: 0.5%;
+}
+.react-tabs__tab-list{
+    border-bottom: none !important
+}
+.react-tabs__tab{
+    height: 40px;
+    cursor: pointer;
+    color: white;
+    background-color: black;
+}
+.react-tabs__tab--selected{
+    background-color: #fa9e1a !important;
+}
+.titleModalShipping{
+    text-align: center !important;
+    margin-top: 20px !important;
+    font-size: 16px;
+    color: black;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+.modalShipping-btn-confirmer{
+    background-color: forestgreen;
+    color: white;
+    border-radius: 4px;
+    width: 120px;
+    height: 40px;
+    border: none;
+}
+.modalShipping-btn-cancel{
+    background-color:slategray;
+    color: white;
+    border-radius: 4px;
+    width: 120px;
+    height: 40px;
+    border: none;
+    float: right;
+}
+.button-voir-image{
+    background-color: cornflowerblue;
+    width: 25%;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+}
