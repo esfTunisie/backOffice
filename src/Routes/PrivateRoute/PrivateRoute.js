@@ -3,19 +3,34 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Login from '../../Components/Login';
+import { TheFooter, TheSidebar, TheHeader } from '../../Components/containers';
 
 
 const PrivateRoute = ({ component: Component, auth: auth, ...rest }) => (
   
   <Route
-    {...rest}
-    render={props =>
-    
-        <Component {...props} />
-       
+  {...rest}
+  render={(props) =>(
+      console.log("props",rest.isAuthenticated),
+      rest.isAuthenticated === true ?
+      <div className="c-app c-default-layout">
+        <TheSidebar/>
+        <div className="c-wrapper">
+          <TheHeader/>
+          <div className="c-body">
+          <Component {...props} /> 
+          </div>
+          <TheFooter/>
+        </div>
+      </div>
+        : <Redirect to='/login' />
+      )         
     }
-  />
-);
+  /> 
+)
+
+
+
 
 
 
@@ -23,26 +38,17 @@ PrivateRoute.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
 const mapDispatchToProps = (dispatch) => {
   return {
-  dispatch: (action) => {
-  dispatch({type:"LOGOUT",
-  token: null,
-  client: null,
-  new_command:null,
-  current_command:null,
-  canceled_command:null,
-  steps1:{},
-  steps2:{},
-  steps3:{},
-  product:null,
-  isLogIn:false}, window.location='/');
-  },
+    dispatch: (action) => {
+      dispatch(action);
+    },
   };
+};
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
   };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute);

@@ -29,16 +29,14 @@ class TheHeader extends Component {
 
 
   componentDidMount=()=>{
-    // this.getClient()
+    this.getClient()
   }
 
   getClient=async()=>{
-   await fetch(apiURL+"/api/getAllMagasin", {headers: {
+   await fetch(apiURL+"/getNewEntreprise", {headers: {
       'Authorization': 'Bearer '+this.props.auth.token}})
      .then(response => response.json()).then(data => {
        console.log("dataClient",data);
-       
-      
     const action = {type:"GET_CLIENT", value:data}
      this.props.dispatch(action)});
   }
@@ -46,7 +44,7 @@ class TheHeader extends Component {
   
  handleClick = async (id)=>{
 
-   await fetch(apiURL+'/api/getNewCommande/'+id ,{headers: {
+   await fetch(apiURL+'/getNewCommande/'+id ,{headers: {
    
     'Authorization': 'Bearer '+this.props.auth.token
   }})
@@ -60,7 +58,7 @@ class TheHeader extends Component {
   }
   handleClickCurrent = async (id)=>{
     console.log('test',id);
-   await fetch(apiURL+'/api/getCurrentCommande/'+id ,{headers: {
+   await fetch(apiURL+'/getCurrentCommande/'+id ,{headers: {
     'Authorization': 'Bearer '+this.props.auth.token
     
   }})
@@ -70,7 +68,7 @@ class TheHeader extends Component {
   }
   handleClickCanceledCommand = async (id)=>{
   
-    await fetch(apiURL+'/api/getCommandeAnnulee/'+id ,{headers: {
+    await fetch(apiURL+'/getCommandeAnnulee/'+id ,{headers: {
 
       'Authorization': 'Bearer '+this.props.auth.token
   }})
@@ -82,7 +80,7 @@ class TheHeader extends Component {
 
   handleClickProduct = async (id)=>{
   
-   await fetch('/api/getAllProduct/'+id ,{headers: {
+   await fetch('/getAllProduct/'+id ,{headers: {
     'Authorization': 'Bearer '+this.props.auth.token
   }})
     .then(response=> response.json()).then(data=>this.setState({product:data}));
@@ -90,7 +88,7 @@ class TheHeader extends Component {
     this.props.dispatch(action)
   }
   handleClickAdress = async (id)=>{
-    await fetch('/api/getAdressDelivery/'+id ,{headers: {
+    await fetch('/getAdressDelivery/'+id ,{headers: {
       'Authorization': 'Bearer '+this.props.auth.token
     }})
       .then(response=> response.json()).then(data=>this.setState({adress:data}));
@@ -134,7 +132,7 @@ render(){
       <Tabs>
       <TabList>
       {this.props.auth.client && this.props.auth.client.map((el)=>(
-         <Tab  onClick={()=>this.handleClick(el.id)}>{el.raison_sociale}</Tab>
+         el.statut == 'actif'?<Tab  onClick={()=>this.handleClick(el.id)}>{el.domaine}</Tab>:null
          )
       )}
       </TabList> 

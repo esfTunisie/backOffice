@@ -8,9 +8,10 @@ import {
   CImg
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect  } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Component } from 'react'
+
 
 
 
@@ -35,7 +36,10 @@ class TheHeaderDropdown extends Component {
         product:null,
         isLogIn:false}
         this.props.dispatch(action)
-        window.location='/';
+        setTimeout(() => {
+          window.location ="/login"
+        }, 500);
+
     }
 
  render () {

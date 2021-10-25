@@ -35,8 +35,11 @@ const UserInfomrmation =(props)=>{
         if(data.status == 200){
             const dataJson = await data.json();
             setData(dataJson);
+            const action = {type:"GET_CURRENT_CLIENT", value:dataJson}
+            props.dispatch(action)
         }
     }
+    console.log("dataaaa",data);
 
 
     return (<div>

@@ -30,6 +30,8 @@ import PrivateRoute from './PrivateRoute/PrivateRoute';
 import FormShipping from '../Components/FormShipping';
 import UserInforamtion from '../Components/UserInforamtion';
 import ProduitClient from '../Components/containers/ProduitClient';
+import { createBrowserHistory } from "history";
+import RedirectToMain from './RedirectToMain';
 
 class MainRoute extends Component{
 
@@ -42,45 +44,32 @@ class MainRoute extends Component{
 
 
   componentDidMount(){
-    
+    console.log(this.props.history);
 }
 
   render(){
     return (
       <Router>
         <Switch>
-          <Route path='/login' component={Login} />
-        {this.props.auth && this.props.auth.token ?<div className="c-app c-default-layout">
-        <Route>
-        <TheSidebar/>
-        </Route>
-        <div className="c-wrapper">
-          <Route>
-          <TheHeader/>
-          </Route>
-          <div className="c-body">
-           <PrivateRoute path="/form_prestashop" component={ApiPrestaForm}  />
-           <PrivateRoute path="/nouveaux_commande" component={NewCommand}  /> 
-           <PrivateRoute path="/panier_abondonnées" component={CommandAbondonnée}  /> 
-           <PrivateRoute path="/commandes_annulées" component={CanceledCommand}   /> 
-           <PrivateRoute path="/commandes_en_cours" component={CurrentCommand}   /> 
-           <PrivateRoute path="/product_list" component={ProductList}   />
+          
+           <PrivateRoute exact path="/form_prestashop" component={ApiPrestaForm}  />
+           <PrivateRoute path="/nouveaux_commande" isAuthenticated={this.props.auth.isLogIn}  component={NewCommand}  /> 
+           <PrivateRoute path="/panier_abondonnées" isAuthenticated={this.props.auth.isLogIn} component={CommandAbondonnée}  /> 
+           <PrivateRoute path="/commandes_annulées" isAuthenticated={this.props.auth.isLogIn} component={CanceledCommand}   /> 
+           <PrivateRoute path="/commandes_en_cours" isAuthenticated={this.props.auth.isLogIn}  component={CurrentCommand}   /> 
+           <PrivateRoute path="/product_list" isAuthenticated={this.props.auth.isLogIn}  component={ProductList}   />
            <PrivateRoute path="/message" component={StepsForms}  />
            <PrivateRoute path="/settings" component={Settings}   />
            <PrivateRoute path="/shipping" component={FormShipping}   />
            <PrivateRoute path="/upgrade" component={UpgradeOffre}   />
-           <PrivateRoute path="/recordNewCommad/:clientId" component={NewCommandeById}  />
-           <PrivateRoute path="/recordCurrentCommand/:clientRef" component={CurrentCommandeByRef}/>
-           <PrivateRoute path="/recordCanceledCommand/:clientRef" component={CanceledCommandByRef} />
-           <PrivateRoute path="/dashboard" component={Dashboard}  /> 
-           <PrivateRoute path="/userInfomration/:userId" component={UserInforamtion}  />
-           <PrivateRoute path="/produit/:userId" component={ProduitClient}  />
-          </div>
-          <Route>
-          <TheFooter/>
-          </Route>
-        </div>
-      </div> : <Redirect to='/login' />}
+           <PrivateRoute path="/recordNewCommad/:clientId" isAuthenticated={this.props.auth.isLogIn}  component={NewCommandeById}  />
+           <PrivateRoute path="/recordCurrentCommand/:clientRef" isAuthenticated={this.props.auth.isLogIn}  component={CurrentCommandeByRef}/>
+           <PrivateRoute path="/recordCanceledCommand/:clientRef" isAuthenticated={this.props.auth.isLogIn}  component={CanceledCommandByRef} />
+           <PrivateRoute exact path="/" isAuthenticated={this.props.auth.isLogIn}  component={Dashboard}  /> 
+           <PrivateRoute path="/userInfomration/:userId" isAuthenticated={this.props.auth.isLogIn}  component={UserInforamtion}  />
+           <PrivateRoute exact path="/produit/:userId" isAuthenticated={this.props.auth.isLogIn}  component={ProduitClient}  />
+          <Route path='/login' component={Login} />
+          <Route component={RedirectToMain}/> 
         </Switch>
       </Router>
     );
@@ -90,16 +79,16 @@ class MainRoute extends Component{
 
 
 
-  const mapStateToProps = (state, ownProps) => ({
-    auth: state.auth
-  })
-  
- 
 const mapDispatchToProps = (dispatch) => {
-return {
-dispatch: (action) => {
-  dispatch(action);
-},
+  return {
+    dispatch: (action) => {
+      dispatch(action);
+    },
+  };
 };
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+  };
 };
 export default connect (mapStateToProps, mapDispatchToProps)(MainRoute)

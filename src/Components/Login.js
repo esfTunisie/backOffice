@@ -42,17 +42,29 @@ class Login extends Component {
       "password": this.state.password
     }),
   };
+  const requestOptionsUser ={
+    method: 'POST',
+    headers: myHeaders,
+  }
   
   fetch(apiURL+"/api/login_check", requestOptions)
     .then(response => {
       if(response.status == 200){
         response.text().then(result =>{
-          const str = JSON.stringify(result).substring(14)
-          const newStr = str.substring(0, str.length - 4)
-          const action = {type:"GET_TOKEN", token:newStr, isLogIn:true,username:this.state.username}
-          this.props.dispatch(action)
-          
-          window.location= '/'
+           fetch(apiURL+'/verifAdminOrClient/'+this.state.username, requestOptionsUser).then(data => {
+             if(data.status == 200){
+                console.log("dataaa",data);
+                const str = JSON.stringify(result).substring(14)
+                const newStr = str.substring(0, str.length - 4)
+                const action = {type:"GET_TOKEN", token:newStr, isLogIn:true,username:this.state.username}
+                this.props.dispatch(action)
+                window.location= '/'
+             }else{
+              this.setState({msgError:true})
+              const action = {type:"GET_TOKEN", token:'', isLogIn:false }
+              this.props.dispatch(action)
+              }
+          }) 
         })
 
       }

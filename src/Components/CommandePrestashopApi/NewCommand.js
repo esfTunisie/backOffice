@@ -1,4 +1,4 @@
-import { Table, Input, Button, Space, Tag, Modal, Radio  } from 'antd';
+import { Table, Input, Button, Space } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
@@ -9,14 +9,10 @@ import { Link } from 'react-router-dom';
 
 
 
-
-
 class NewCommand extends React.Component {
   state = {
     searchText: '',
     searchedColumn: '',
-    visible:false,
-    value:1
   };
 
  
@@ -99,56 +95,9 @@ class NewCommand extends React.Component {
     clearFilters();
     this.setState({ searchText: '' });
   };
-   showModal = () => {
-    this.setState({visible:true});
-  };
-
-   handleOk = () => {
-    this.setState({visible:false});
-  };
-
-   handleCancel = () => {
-    this.setState({visible:false});
-  };
-   onChange = e => {
-    console.log('radio checked', e.target.value);
-    this.setState({value:e.target.value});
-  };
 
 
   render() {
-    const fakeData = [
-      {
-        "firstName": "Shifti",
-        "lastName": "Tunisie",
-        "email":"shifti@shifti.co",
-        "payment":"comptant",
-        "montant": "99.900",
-        "référence":"A22",
-        "date_add":"08/10/2021",
-        "status":"New",
-      },
-      {
-        "firstName": "Shifti",
-        "lastName": "Tunisie",
-        "email":"shifti@shifti.co",
-        "payment":"comptant",
-        "montant": "99.900",
-        "référence":"A22",
-        "date_add":"08/10/2021",
-        "status":"En cours",
-      },
-      {
-        "firstName": "Shifti",
-        "lastName": "Tunisie",
-        "email":"shifti@shifti.co",
-        "payment":"comptant",
-        "montant": "99.900",
-        "référence":"A22",
-        "date_add":"08/10/2021",
-        "status":"Livré",
-      }
-    ]
 
     const columns = [
         {
@@ -201,27 +150,12 @@ class NewCommand extends React.Component {
             width: '30%',
             ...this.getColumnSearchProps('date_add'),
           },
-          // {
-          //   title: 'date de modification',
-          //   dataIndex: 'date_update',
-          //   key: 'date_update',
-          //   width: '30%',
-          //   ...this.getColumnSearchProps('date_update'),
-            
-          // },
-            {
-            title: 'status',
-            
-            key: 'status',
+          {
+            title: 'date de modification',
+            dataIndex: 'date_update',
+            key: 'date_update',
             width: '30%',
-            ...this.getColumnSearchProps('status'),
-            dataIndex: 'status',
-            render: status => (
-              <span>
-                    <Tag color={status == "New"?'volcano': status =='En cours'?'geekblue': 'green'} key={status}>
-                      {status.toUpperCase()}
-                    </Tag>
-              </span>)
+            ...this.getColumnSearchProps('date_update'),
             
           },
           {
@@ -229,7 +163,7 @@ class NewCommand extends React.Component {
             width: '30%',
             render: (text, record) => (
               <Space size="middle">
-                <div style={{cursor:"pointer"}}  onClick={()=>this.setState({visible:true})} >Livrer </div>
+                <Link to={`/recordNewCommad/clientId=${record.id}`} onClick={console.log('record',record)} >consulter </Link>
               </Space>)
           },
 
@@ -237,19 +171,7 @@ class NewCommand extends React.Component {
           
 
       ];
-    // return <Table columns={columns} dataSource={this.props.auth.new_command} style={{overflow:"scroll", width:"100%"}} />;
-    return(
-      <>
-      <Modal title="Livraison" visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
-      <Radio.Group onChange={this.onChange} value={this.state.value}>
-      <Radio value={1}>Dropex</Radio>
-      <Radio value={2}>Poste</Radio>
-      <Radio value={3}>Aramex</Radio>
-      <Radio value={4}>Tunisia-express</Radio>
-    </Radio.Group>
-    </Modal>
-       <Table columns={columns} dataSource={fakeData} style={{overflow:"scroll", width:"100%"}} />
-       </>);
+    return <Table columns={columns} dataSource={this.props.auth.new_command} style={{overflow:"scroll", width:"100%"}} />;
   }
 }
 const mapStateToProps = (state, ownProps) => ({

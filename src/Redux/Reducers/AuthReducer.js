@@ -15,6 +15,7 @@ const initialState = {
   shops:null,
   adress:null,
   arrayAdress:{},
+  current_client:null
 };
 
 function AuthReducer(state = initialState, action) {
@@ -26,12 +27,16 @@ function AuthReducer(state = initialState, action) {
         isLogIn: action.isLogIn,
         username: action.username,
         
-
       };
       case "GET_CLIENT":
       return {
         ...state,
         client: action.value,
+      };
+      case "GET_CURRENT_CLIENT":
+      return {
+        ...state,
+        current_client: action.value,
       };
       
       case "GET_NEW_COMMAND":

@@ -7,24 +7,26 @@ import { Link } from 'react-router-dom';
 
 
 const Dashboard =()=>{
-    const [data, setData] = useState('')
+    const [data, setData] = useState([])
     useEffect(() => {
-        console.log("hereeee");
         getData()
-      
-       
     }, []);
-
+    
     const getData =async()=>{
         const requestOptions = {
             method: 'GET',
-           
           };
         const data = await fetch(apiURL+"/getNewEntreprise",requestOptions);
         if(data.status == 200){
             const dataJson = await data.json()
-            setData(dataJson)
-            console.log(dataJson);
+            const newData =[];
+            dataJson.forEach(element => {
+              if(element.statut == 'inactif'){
+                newData.push(element)
+              }
+            });
+            setData(newData)
+         
         }
 
     }
@@ -58,6 +60,7 @@ const Dashboard =()=>{
           },
        
       ];
+
     return(
         <div>
             <Table columns={columns} dataSource={data} />
@@ -80,4 +83,4 @@ const mapStateToProps = (state) => {
         };
     };
       
-export default Dashboard;
+export default connect (mapStateToProps, mapDispatchToProps) (Dashboard);
